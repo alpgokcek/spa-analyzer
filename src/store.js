@@ -298,6 +298,83 @@ export const store = new Vuex.Store({
     },
     // <-- TÜM create - update - delete işlemleri
     // listeler -->
+
+    getAuthority ({ state, commit}, data) {
+
+    },
+    getCourse ({ state, commit}, data) {
+
+    },
+    getCourseOutcome ({ state, commit}, data) {
+
+    },
+    getAssessment ({ state, commit}, data) {
+
+    },
+    getDashboard ({ state, commit}, data) {
+
+    },
+    getDepartment ({ state, commit}, data) {
+
+    },
+    getDepartmentsHasInstructors ({ state, commit}, data) {
+
+    },
+    getFaculty ({ state, commit}, data) {
+
+    },
+    getGradingTool ({ state, commit}, data) {
+
+    },
+    getGtcco ({ state, commit}, data) {
+
+    },
+    getIgs ({ state, commit}, data) {
+
+    },
+    getLog ({ state, commit}, data) {
+
+    },
+    getProgramOutcome ({ state, commit}, data) {
+
+    },
+    getPopco ({ state, commit}, data) {
+
+    },
+    getSection ({ state, commit}, data) {
+
+    },
+    getSagt ({ state, commit}, data) {
+
+    },
+    getSgmgco ({ state, commit}, data) {
+
+    },
+    getSgmgpo ({ state, commit}, data) {
+
+    },
+    getSts ({ state, commit}, data) {
+
+    },
+    getUniversity ({ state, commit}, data) {
+
+    },
+    getUser ({ state, commit}, data) {
+
+    },
+    getUsersAdmin ({ state, commit}, data) {
+
+    },
+    getUsersStudent ({ state, commit}, data) {
+
+    },
+    getUsersInstructor ({ state, commit}, data) {
+
+    },
+    getCheckAuth ({ state, commit}, data) {
+
+    },
+
     getCompanies ({ state }, data) {
       axios.get(`company?${data.param}`, axiosHeader)
       .then(res => {

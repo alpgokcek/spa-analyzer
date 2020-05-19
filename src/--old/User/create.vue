@@ -27,6 +27,9 @@
               <b-form-group :label="$t('Customer.allCustomers')" v-if="showInput">
                 <v-select :options="allCustomers" label="title" @input="selectCustomer"></v-select>
               </b-form-group>
+              <b-form-group :label="$t('Customer.gender')" :class="$v.form.userGender.$error ? 'form-group--error' : ''">
+                <v-select :options="userGender" label="label" @input="selectGender"></v-select>
+              </b-form-group>
               <b-form-group :label="$t('Customer.name')" :class="$v.form.userName.$error ? 'form-group--error' : ''">
                 <b-form-input v-model.trim="$v.form.userName.$model" type="text"></b-form-input>
               </b-form-group>
@@ -45,7 +48,6 @@
                 </b-form-checkbox>
               </b-form-group>
             </b-tab>
-            
           </b-tabs>
         </b-card>
       </b-col>
@@ -60,8 +62,13 @@ export default {
     return {
       showInput: false,
       tabIndex: 1,
+      userGender: [
+        { label: this.$t('Customer.gender-mr'), value: 'mr'},
+        { label: this.$t('Customer.gender-mrs'), value: 'mrs'}
+      ],
       form: {
         company: '',
+        userGender: '',
         userName: '',
         userEmail: '',
         userPassword: '',
@@ -109,6 +116,7 @@ export default {
     submitUser () {
       let userinfo = {
         company: this.form.company,
+        gender: this.form.userGender,
         name: this.form.userName,
         email: this.form.userEmail,
         password: this.form.userPassword,
@@ -161,7 +169,10 @@ export default {
     },
     selectCompany (e) {
       this.form.company = e.id
-      this.customers(e.id,1)
+      this.customers(e.id, 1)
+    },
+    selectGender (e) {
+      this.form.userGender = e.value
     },
     selectUser (e) {
       this.form.user = e.id
@@ -169,7 +180,7 @@ export default {
       this.form.company = e.company
     },
     selectedLevel (e) {
-      if ((e.level == 201) || (e.level == 202) || (e.level == 203)) {
+      if ((e.level === 201) || (e.level === 202) || (e.level === 203)) {
         this.showInput = false
         // bu 3 değerden biriyse otomatik olarak DEMPIN firmasına bağlanacak.
         this.form.customer = 22
@@ -193,8 +204,9 @@ export default {
     return {
       form: {
         company: { required },
+        userGender: { required },
         userName: { required },
-        userEmail: { required },
+        userEmail: { required, email },
         userPassword: { required },
         userLevel: { required },
         userKvkk: { required },

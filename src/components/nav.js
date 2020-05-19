@@ -7,6 +7,177 @@ export const items = [
     params: {},
     sub: []
   },
+
+  {
+    title: i18n.t('nav.AuthorityIndex'),
+    router: 'AuthorityIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.CourseIndex'),
+    router: 'CourseIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.CourseOutcomeIndex'),
+    router: 'CourseOutcomeIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.AssessmentIndex'),
+    router: 'AssessmentIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.DepartmentIndex'),
+    router: 'DepartmentIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.DepartmentsHasInstructorsIndex'),
+    router: 'DepartmentsHasInstructorsIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.FacultyIndex'),
+    router: 'FacultyIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.GradingToolIndex'),
+    router: 'GradingToolIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.GtccoIndex'),
+    router: 'GtccoIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.IgsIndex'),
+    router: 'IgsIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.LogIndex'),
+    router: 'LogIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.ProgramOutcomeIndex'),
+    router: 'ProgramOutcomeIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.PopcoIndex'),
+    router: 'PopcoIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.SectionIndex'),
+    router: 'SectionIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.SagtIndex'),
+    router: 'SagtIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.SgmgcoIndex'),
+    router: 'SgmgcoIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.SgmgpoIndex'),
+    router: 'SgmgpoIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.StsIndex'),
+    router: 'StsIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.UniversityIndex'),
+    router: 'UniversityIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.UserIndex'),
+    router: 'UserIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.UsersAdminIndex'),
+    router: 'UsersAdminIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.UsersStudentIndex'),
+    router: 'UsersStudentIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.UsersInstructorIndex'),
+    router: 'UsersInstructorIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+  {
+    title: i18n.t('nav.CheckAuthIndex'),
+    router: 'CheckAuthIndex',
+    icon: '',
+    params: {},
+    sub: []
+  },    
+
+
   {
     title: i18n.t('nav.customer'),
     router: 'Customer',
