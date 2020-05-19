@@ -73,6 +73,7 @@ export default {
   watch: {
     '$route' (to) {
       this.getData('users-student')
+    }
   },
   mounted () {
     this.getData('users-student')

@@ -71,6 +71,7 @@ export default {
   watch: {
     '$route' (to) {
       this.getData('users-instructor')
+    }
   },
   mounted () {
     this.getData('users-instructor')

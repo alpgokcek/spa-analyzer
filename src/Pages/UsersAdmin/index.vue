@@ -69,6 +69,7 @@ export default {
   watch: {
     '$route' (to) {
       this.getData('users-admin')
+    }
   },
   mounted () {
     this.getData('users-admin')
