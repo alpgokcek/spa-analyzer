@@ -18,18 +18,12 @@
     <DxFilterRow :visible="true" apply-filter="auto"/>
     <DxHeaderFilter :visible="true"/>
     <DxColumnFixing :enabled="true"/>
-    <DxColumn v-if="tableRows[0].visible" :data-field="tableRows[0].field" :caption="$t( 'User.' + tableRows[0].field)" :format="tableRows[0].format" :data-type="tableRows[0].dataType" :alignment="tableRows[0].alignment" :cell-template="tableRows[0].cellTemplate" />
-    <DxColumn v-if="tableRows[1].visible" :data-field="tableRows[1].field" :caption="$t( 'User.' + tableRows[1].field)" :format="tableRows[1].format" :data-type="tableRows[1].dataType" :alignment="tableRows[1].alignment" :cell-template="tableRows[1].cellTemplate" />
-    <DxColumn v-if="tableRows[2].visible" :data-field="tableRows[2].field" :caption="$t( 'User.' + tableRows[2].field)" :format="tableRows[2].format" :data-type="tableRows[2].dataType" :alignment="tableRows[2].alignment" :cell-template="tableRows[2].cellTemplate" />
-    <DxColumn v-if="tableRows[3].visible" :data-field="tableRows[3].field" :caption="$t( 'User.' + tableRows[3].field)" :format="tableRows[3].format" :data-type="tableRows[3].dataType" :alignment="tableRows[3].alignment" :cell-template="tableRows[3].cellTemplate" />
-    <DxColumn v-if="tableRows[4].visible" :data-field="tableRows[4].field" :caption="$t( 'User.' + tableRows[4].field)" :format="tableRows[4].format" :data-type="tableRows[4].dataType" :alignment="tableRows[4].alignment" :cell-template="tableRows[4].cellTemplate" />
-    <DxColumn v-if="tableRows[5].visible" :data-field="tableRows[5].field" :caption="$t( 'User.' + tableRows[5].field)" :format="tableRows[5].format" :data-type="tableRows[5].dataType" :alignment="tableRows[5].alignment" :cell-template="tableRows[5].cellTemplate" />
-    <DxColumn v-if="tableRows[7].visible" :data-field="tableRows[6].field" :caption="$t( 'User.' + tableRows[6].field)" :format="tableRows[6].format" :data-type="tableRows[6].dataType" :alignment="tableRows[6].alignment" :cell-template="tableRows[6].cellTemplate" />
-    <DxColumn v-if="tableRows[7].visible" :data-field="tableRows[7].field" :caption="$t( 'User.' + tableRows[7].field)" :format="tableRows[7].format" :data-type="tableRows[7].dataType" :alignment="tableRows[7].alignment" :cell-template="tableRows[7].cellTemplate" />
-    <DxColumn v-if="tableRows[8].visible" :data-field="tableRows[8].field" :caption="$t( 'User.' + tableRows[8].field)" :format="tableRows[8].format" :data-type="tableRows[8].dataType" :alignment="tableRows[8].alignment" :cell-template="tableRows[8].cellTemplate" />
-    <DxColumn v-if="tableRows[9].visible" :data-field="tableRows[9].field" :caption="$t( 'User.' + tableRows[9].field)" :format="tableRows[9].format" :data-type="tableRows[9].dataType" :alignment="tableRows[9].alignment" :cell-template="tableRows[9].cellTemplate" />
-    <DxColumn v-if="tableRows[10].visible" :data-field="tableRows[10].field" :caption="$t( 'User.' + tableRows[10].field)" :format="tableRows[10].format" :data-type="tableRows[10].dataType" :alignment="tableRows[10].alignment" :cell-template="tableRows[10].cellTemplate" />
-    <DxColumn v-if="tableRows[11].visible" :data-field="tableRows[11].field" :caption="$t( 'User.' + tableRows[11].field)" :format="tableRows[11].format" :data-type="tableRows[11].dataType" :alignment="tableRows[11].alignment" :cell-template="tableRows[11].cellTemplate" />
+    <DxColumn v-if="tableRows[0].visible" :data-field="tableRows[0].field" :caption="$t( 'Sgmgpo.' + tableRows[0].field)" :format="tableRows[0].format" :data-type="tableRows[0].dataType" :alignment="tableRows[0].alignment" :cell-template="tableRows[0].cellTemplate" />
+    <DxColumn v-if="tableRows[1].visible" :data-field="tableRows[1].field" :caption="$t( 'Sgmgpo.' + tableRows[1].field)" :format="tableRows[1].format" :data-type="tableRows[1].dataType" :alignment="tableRows[1].alignment" :cell-template="tableRows[1].cellTemplate" />
+    <DxColumn v-if="tableRows[2].visible" :data-field="tableRows[2].field" :caption="$t( 'Sgmgpo.' + tableRows[2].field)" :format="tableRows[2].format" :data-type="tableRows[2].dataType" :alignment="tableRows[2].alignment" :cell-template="tableRows[2].cellTemplate" />
+    <DxColumn v-if="tableRows[3].visible" :data-field="tableRows[3].field" :caption="$t( 'Sgmgpo.' + tableRows[3].field)" :format="tableRows[3].format" :data-type="tableRows[3].dataType" :alignment="tableRows[3].alignment" :cell-template="tableRows[3].cellTemplate" />
+    <DxColumn v-if="tableRows[4].visible" :data-field="tableRows[4].field" :caption="$t( 'Sgmgpo.' + tableRows[4].field)" :format="tableRows[4].format" :data-type="tableRows[4].dataType" :alignment="tableRows[4].alignment" :cell-template="tableRows[4].cellTemplate" />
+    <DxColumn v-if="tableRows[5].visible" :data-field="tableRows[5].field" :caption="$t( 'Sgmgpo.' + tableRows[5].field)" :format="tableRows[5].format" :data-type="tableRows[5].dataType" :alignment="tableRows[5].alignment" :cell-template="tableRows[5].cellTemplate" />
     <template #customerCodeCell="cell">
       <kbd>{{cell.data.value}}</kbd>
     </template>
@@ -64,18 +58,12 @@ export default {
       routeName: this.$route.name,
       selectedRow: '',
       rows: [
-        {visible: true, field: 'api_token', format: '', dataType: '', alignment: '', cellTemplate: 'tokenCell'},
-        {visible: true, field: 'name', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: true, field: 'companyName', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: true, field: 'levelTitle', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: false, field: 'level', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: true, field: 'phone', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: true, field: 'email', format: '', dataType: '', alignment: '', cellTemplate: 'emailCell'},
-        {visible: true, field: 'status', format: '', dataType: '', alignment: '', cellTemplate: 'statusCell'},
-        {visible: true, field: 'kvkk', format: '', dataType: '', alignment: '', cellTemplate: 'kvkkCell'},
-        {visible: false, field: 'photo', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: false, field: 'id', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: false, field: 'company', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: true, field: 'id', format: '', dataType: '', alignment: '', cellTemplate: 'tokenCell'},
+        {visible: true, field: 'program_outcome_id', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: true, field: 'student_id', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: true, field: 'grade', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: false, field: 'grade5', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: true, field: 'created_at', format: '', dataType: '', alignment: '', cellTemplate: ''}
       ]
     }
   },
@@ -84,18 +72,18 @@ export default {
   },
   watch: {
     '$route' (to) {
-      if (to.name === 'CustomerUser') {
-        this.getData('user?customer=' + to.params.customer)
+      if (to.name === 'graph1') {
+        this.getData('sgmgpo?type=' + this.$route.params.type + '?student=' + this.$route.params.student + '?code=' + this.$route.params.code)
       } else {
-        this.getData('user')
+        this.getData('sgmgpo')
       }
     }
   },
   mounted () {
-    if (this.$route.name === 'CustomerUser') {
-      this.getData('user?customer=' + this.$route.params.customer)
+    if (this.$route.name === 'graph1') {
+      this.getData('sgmgpo?type=' + this.$route.params.type + '?student=' + this.$route.params.student + '?code=' + this.$route.params.code)
     } else {
-      this.getData('user')
+      this.getData('sgmgpo')
     }
     this.setRows()
   },

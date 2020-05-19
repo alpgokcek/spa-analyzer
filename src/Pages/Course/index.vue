@@ -81,7 +81,7 @@ export default {
   },
   mounted () {
     let url = ''
-    this.$route.params.name === 'department' ? url = 'course?department=' + this.$route.params.params.department : this.$route.params.name === 'code' ? url = 'course?code=' + this.$route.params.params.code : url = 'course'
+    this.$route.params.name === 'department' ? url = 'course?department=' + this.$route.params.department : this.$route.params.name === 'code' ? url = 'course?code=' + this.$route.params.code : url = 'course'
     this.getData(url)
     this.setRows()
   },

@@ -30,6 +30,7 @@
     <DxColumn v-if="tableRows[9].visible" :data-field="tableRows[9].field" :caption="$t( 'User.' + tableRows[9].field)" :format="tableRows[9].format" :data-type="tableRows[9].dataType" :alignment="tableRows[9].alignment" :cell-template="tableRows[9].cellTemplate" />
     <DxColumn v-if="tableRows[10].visible" :data-field="tableRows[10].field" :caption="$t( 'User.' + tableRows[10].field)" :format="tableRows[10].format" :data-type="tableRows[10].dataType" :alignment="tableRows[10].alignment" :cell-template="tableRows[10].cellTemplate" />
     <DxColumn v-if="tableRows[11].visible" :data-field="tableRows[11].field" :caption="$t( 'User.' + tableRows[11].field)" :format="tableRows[11].format" :data-type="tableRows[11].dataType" :alignment="tableRows[11].alignment" :cell-template="tableRows[11].cellTemplate" />
+    <DxColumn v-if="tableRows[12].visible" :data-field="tableRows[12].field" :caption="$t( 'User.' + tableRows[12].field)" :format="tableRows[12].format" :data-type="tableRows[12].dataType" :alignment="tableRows[12].alignment" :cell-template="tableRows[12].cellTemplate" />
     <template #customerCodeCell="cell">
       <kbd>{{cell.data.value}}</kbd>
     </template>
@@ -66,16 +67,17 @@ export default {
       rows: [
         {visible: true, field: 'api_token', format: '', dataType: '', alignment: '', cellTemplate: 'tokenCell'},
         {visible: true, field: 'name', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: true, field: 'companyName', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: true, field: 'levelTitle', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: true, field: 'university', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: true, field: 'faculty_id', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: true, field: 'department_id', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: true, field: 'student_id', format: '', dataType: '', alignment: '', cellTemplate: ''},
         {visible: false, field: 'level', format: '', dataType: '', alignment: '', cellTemplate: ''},
         {visible: true, field: 'phone', format: '', dataType: '', alignment: '', cellTemplate: ''},
         {visible: true, field: 'email', format: '', dataType: '', alignment: '', cellTemplate: 'emailCell'},
         {visible: true, field: 'status', format: '', dataType: '', alignment: '', cellTemplate: 'statusCell'},
-        {visible: true, field: 'kvkk', format: '', dataType: '', alignment: '', cellTemplate: 'kvkkCell'},
         {visible: false, field: 'photo', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: false, field: 'id', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: false, field: 'company', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: true, field: 'created_at', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {visible: false, field: 'id', format: '', dataType: '', alignment: '', cellTemplate: ''}
       ]
     }
   },
@@ -84,16 +86,16 @@ export default {
   },
   watch: {
     '$route' (to) {
-      if (to.name === 'CustomerUser') {
-        this.getData('user?customer=' + to.params.customer)
+      if (to.name === 'university') {
+        this.getData('user?university=' + to.params.university)
       } else {
         this.getData('user')
       }
     }
   },
   mounted () {
-    if (this.$route.name === 'CustomerUser') {
-      this.getData('user?customer=' + this.$route.params.customer)
+    if (this.$route.name === 'university') {
+      this.getData('user?university=' + this.$route.params.university)
     } else {
       this.getData('user')
     }
