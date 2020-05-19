@@ -84,18 +84,18 @@ export default {
   },
   watch: {
     '$route' (to) {
-      if (to.name === 'CustomerUser') {
-        this.getData('user?customer=' + to.params.customer)
+      if (to.name === 'course') {
+        this.getData('course-outcome?course=' + to.params.course)
       } else {
-        this.getData('user')
+        this.getData('course')
       }
     }
   },
   mounted () {
-    if (this.$route.name === 'CustomerUser') {
-      this.getData('user?customer=' + this.$route.params.customer)
+    if (this.$route.name === 'course') {
+      this.getData('course-outcome?course=' + this.$route.params.course)
     } else {
-      this.getData('user')
+      this.getData('course-outcome')
     }
     this.setRows()
   },
