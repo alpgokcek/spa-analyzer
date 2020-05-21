@@ -30,7 +30,7 @@
     />
     <template #tokenCell="cell">
       <div class="asc__listPage-operations">
-        <router-link :to="{name: 'UserUpdate', params: {token: cell.data.value}}" v-b-tooltip.hover :title="$t('list.setttings')"><i class="fas fa-cog"></i></router-link>
+        <router-link :to="{name: 'Department', params: {id: cell.data.value}}" v-b-tooltip.hover :title="$t('list.departments')"><i class="fas fa-eye"></i></router-link>
       </div>
     </template>
     <DxPager :show-page-size-selector="true" :allowed-page-sizes="[10, 20, 50, 100]" />
@@ -46,8 +46,8 @@ export default {
       rows: [
         {field: 'universityName', format: '', dataType: '', alignment: '', cellTemplate: ''},
         {field: 'title', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'status', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'id', format: '', dataType: '', alignment: '', cellTemplate: ''}
+        // {field: 'status', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {field: 'id', format: '', dataType: '', alignment: '', cellTemplate: 'tokenCell'}
       ]
     }
   },
