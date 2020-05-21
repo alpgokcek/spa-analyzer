@@ -70,8 +70,10 @@ https://quilljs.com/docs/download/
 
 ### Notlar
 Faculty/index.vue dosyası doğru şekillendirildi.
-diğer dosyaların tamamı bu dosyaya göre yeniden şekillendirilmeli.
-api bağlantılarına dikkat edilecek.
+
+Diğer dosyaların tamamı bu dosyaya göre yeniden şekillendirilmeli.
+
+Api bağlantılarına dikkat edilecek.
 
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
