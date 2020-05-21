@@ -6,12 +6,12 @@
 <script>
 
 import { mapState } from 'vuex'
-import { items } from './nav.js'
+import { admin, instructor } from './nav.js'
 
 export default {
   data () {
     return {
-      items: items
+      items: instructor
     }
   },
   computed: {

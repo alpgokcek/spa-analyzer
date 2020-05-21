@@ -1,12 +1,13 @@
 # SPA Analyzer
 
-> SPA Analyzer front-end proj.
+SPA Analyzer front-end proj.
 
-## Build Setup
+### Build Setup
 
 ```bash
 # kopyalanmış projeyi çalıştırmadan önce
 npm install
+
 # localhost:8080 portundan projeyi çalıştırmak için
 npm run dev
 
@@ -14,8 +15,8 @@ npm run dev
 npm run build
 ```
 
+#### import edilecekler
 ```bash
-# import edilecekler
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -32,7 +33,9 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
-# importları kullanmak
+```
+#### importları kullanmak
+```bash
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
@@ -53,7 +56,9 @@ Vue.prototype.$vuescrollConfig = {
 }
 Vue.component('vueDropzone', vue2Dropzone)
 Vue.use(VueQuillEditor, /* { default global options } */)
-# paket siteleri
+```
+#### paket siteleri
+```bash
 https://vuex.vuejs.org/installation.html
 https://router.vuejs.org/installation.html#direct-download-cdn
 https://bootstrap-vue.js.org/docs
@@ -62,4 +67,11 @@ https://vuescrolljs.yvescoding.org/
 https://rowanwins.github.io/vue-dropzone/docs/dist/index.html#/installation
 https://quilljs.com/docs/download/
 ```
+
+### Notlar
+Faculty/index.vue dosyası doğru şekillendirildi.
+diğer dosyaların tamamı bu dosyaya göre yeniden şekillendirilmeli.
+api bağlantılarına dikkat edilecek.
+
+
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
