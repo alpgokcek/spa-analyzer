@@ -243,16 +243,17 @@
   "User": {
     "api_token": "Token",
     "name": "Name",
-    "companyName": "Company",
-    "levelTitle": "Level",
+    "university": "University",
+    "faculty_id": "Faculty ID",
+    "department_id": "Department ID",
+    "student_id": "Student Number",
     "level": "Level",
     "phone": "Phone",
-    "email": "E-Mail",
+    "email": "Email",
     "status": "Status",
-    "kvkk": "KVKK",
     "photo": "Photo",
     "id": "ID",
-    "company": "Company"
+    "created_at": "Created At"
   },
   "Authorization": {
     "operation": "Operation",
@@ -282,5 +283,156 @@
     "selectedUsers": "Registered Users",
     "users": "All Users",
     "mergeUser": "Merge User"
+  },
+  "UsersStudent": {
+    "id":"ID",
+    "user_id":"User ID",
+    "advisor_user_id":"Advisor User ID",
+    "department_id":"Department ID",
+    "is_major":"Is Major?",
+    "status":"Status"
+  },
+  "University": {
+    "id":"ID",
+    "name":"University Name",
+    "bank_account":"Bank Account Details",
+    "address":"Address",
+    "tel":"Phone",
+    "logo":"Logo",
+    "status":"Status",
+    "created_at":"Created At",
+    "updated_at":"Updated At"
+  },
+  "UsersAdmin": {
+    "id":"ID",
+    "user":"User ID",
+    "status":"Status",
+    "created_at":"Created At"
+  },
+  "UsersInstructor": {
+    "id":"ID",
+    "user_id":"User ID",
+    "role":"Role",
+    "status":"Status",
+    "created_at":"Created At"
+  },
+  "Sts": {
+    "id":"ID",
+    "student_id":"Student Number",
+    "section_id":"Section ID",
+    "letter_grade":"Letter Grade",
+    "average":"Average"
+  },
+  "Sgmgpo": {
+    "id":"ID",
+    "program_outcome_id":"PO ID",
+    "student_id":"Student Number",
+    "grade":"Grade out of 100",
+    "grade5":"Grade out of 5",
+    "created_at":"Created At"
+  },
+  "Sgmgco": {
+    "id":"ID",
+    "course_outcome_id":"CO ID",
+    "student_id":"Student Number",
+    "grade":"Grade out of 100",
+    "grade5":"Grade out of 5",
+    "created_at":"Created At"
+  },
+  "Section": {
+    "id":"ID",
+    "course_id":"Course ID",
+    "title":"Section Name",
+    "status":"Status",
+    "created_at":"Created At",
+    "updated_at":"Updated At"
+  },
+  "Sagt": {
+    "id":"ID",
+    "student_id":"Student Number",
+    "grading_tool_id":"Grading Tool ID",
+    "grade":"Grade",
+    "created_at":"Created At"
+  },
+  "ProgramOutcome": {
+    "id":"ID",
+    "department_id":"Department ID",
+    "year_and_term":"Year and Term",
+    "code":"PO Code",
+    "explanation":"Explanation",
+    "created_at":"Created At",
+    "updated_at":"Updated At"
+  },
+  "Gtcco": {
+    "id":"ID",
+    "grading_tool_id":"Grading Tool ID",
+    "course_outcome_id":"CO ID",
+    "created_at":"Created At"
+  },
+  "Igs": {
+    "id":"ID",
+    "instructor_email":"Instructor Email",
+    "section_id":"CO ID",
+    "created_at":"Created At",
+    "updated_at":"Updated At"
+  },
+  "Popco": {
+    "id":"ID",
+    "course_outcome_id":"CO ID",
+    "program_outcome_id":"PO ID",
+    "created_at":"Created At",
+    "updated_at":"Updated At"
+  },
+  "Department": {
+    "id":"ID",
+    "faculty":"Faculty ID",
+    "name":"Name",
+    "created_at":"Created At"
+  },
+  "GradingTool": {
+    "id":"ID",
+    "assessment_id":"Assessment ID",
+    "question_number":"Question Number",
+    "percentage":"Percentage",
+    "created_at":"Created At",
+    "updated_at":"Updated At"
+  },
+  "Faculty": {
+    "id":"ID",
+    "university":"University Name",
+    "title":"Name",
+    "status":"Status",
+    "created_at":"Created At",
+    "token":"Token"
+  },
+  "DepartmentsHasInstructors": {
+    "id":"ID",
+    "department_id":"Department ID",
+    "instructor_email":"Instructor Email",
+    "created_at":"Created At"
+  },
+  "Course": {
+    "id":"ID",
+    "name":"Course Name",
+    "year_and_term":"Year and Term",
+    "code":"Course Code",
+    "title":"Course Name",
+    "credit":"Credit",
+    "status":"Status"
+  },
+  "CourseOutcome": {
+    "id":"ID",
+    "explanation":"Explanation",
+    "code":"CO Code",
+    "course_id":"Course ID",
+    "created_at":"Created At"
+  },
+  "Assessment": {
+    "id":"ID",
+    "name":"Name",
+    "percentage":"Percentage",
+    "course_id":"Course ID",
+    "created_at":"Created At",
+    "updated_at":"Updated At"
   }
 }
