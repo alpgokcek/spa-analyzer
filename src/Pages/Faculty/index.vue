@@ -44,12 +44,10 @@ export default {
       routeName: this.$route.name,
       selectedRow: '',
       rows: [
-        {field: 'id', format: '', dataType: '', alignment: '', cellTemplate: 'tokenCell'},
-        {field: 'university', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {field: 'universityName', format: '', dataType: '', alignment: '', cellTemplate: ''},
         {field: 'title', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'status', format: '', dataType: '', alignment: '', cellTemplate: 'statusCell'},
-        {field: 'created_at', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'token', format: '', dataType: '', alignment: '', cellTemplate: ''}
+        {field: 'status', format: '', dataType: '', alignment: '', cellTemplate: ''},
+        {field: 'id', format: '', dataType: '', alignment: '', cellTemplate: ''}
       ]
     }
   },
