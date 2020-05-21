@@ -18,10 +18,10 @@
     <DxFilterRow :visible="true" apply-filter="auto"/>
     <DxHeaderFilter :visible="true"/>
     <DxColumnFixing :enabled="true"/>
-    <DxColumn v-if="tableRows[0].visible" :data-field="tableRows[0].field" :caption="$t( 'User.' + tableRows[0].field)" :format="tableRows[0].format" :data-type="tableRows[0].dataType" :alignment="tableRows[0].alignment" :cell-template="tableRows[0].cellTemplate" />
-    <DxColumn v-if="tableRows[1].visible" :data-field="tableRows[1].field" :caption="$t( 'User.' + tableRows[1].field)" :format="tableRows[1].format" :data-type="tableRows[1].dataType" :alignment="tableRows[1].alignment" :cell-template="tableRows[1].cellTemplate" />
-    <DxColumn v-if="tableRows[2].visible" :data-field="tableRows[2].field" :caption="$t( 'User.' + tableRows[2].field)" :format="tableRows[2].format" :data-type="tableRows[2].dataType" :alignment="tableRows[2].alignment" :cell-template="tableRows[2].cellTemplate" />
-    <DxColumn v-if="tableRows[3].visible" :data-field="tableRows[3].field" :caption="$t( 'User.' + tableRows[3].field)" :format="tableRows[3].format" :data-type="tableRows[3].dataType" :alignment="tableRows[3].alignment" :cell-template="tableRows[3].cellTemplate" />
+    <DxColumn v-if="tableRows[0].visible" :data-field="tableRows[0].field" :caption="$t( 'Department.' + tableRows[0].field)" :format="tableRows[0].format" :data-type="tableRows[0].dataType" :alignment="tableRows[0].alignment" :cell-template="tableRows[0].cellTemplate" />
+    <DxColumn v-if="tableRows[1].visible" :data-field="tableRows[1].field" :caption="$t( 'Department.' + tableRows[1].field)" :format="tableRows[1].format" :data-type="tableRows[1].dataType" :alignment="tableRows[1].alignment" :cell-template="tableRows[1].cellTemplate" />
+    <DxColumn v-if="tableRows[2].visible" :data-field="tableRows[2].field" :caption="$t( 'Department.' + tableRows[2].field)" :format="tableRows[2].format" :data-type="tableRows[2].dataType" :alignment="tableRows[2].alignment" :cell-template="tableRows[2].cellTemplate" />
+    <DxColumn v-if="tableRows[3].visible" :data-field="tableRows[3].field" :caption="$t( 'Department.' + tableRows[3].field)" :format="tableRows[3].format" :data-type="tableRows[3].dataType" :alignment="tableRows[3].alignment" :cell-template="tableRows[3].cellTemplate" />
     <template #customerCodeCell="cell">
       <kbd>{{cell.data.value}}</kbd>
     </template>

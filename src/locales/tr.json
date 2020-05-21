@@ -275,16 +275,17 @@
   "User": {
     "api_token": "Token",
     "name": "İsim",
-    "companyName": "Firma",
-    "levelTitle": "Seviye",
+    "university": "Üniversite",
+    "faculty_id": "Fakülte ID",
+    "department_id": "Departman ID",
+    "student_id": "Öğrenci Numarası",
     "level": "Seviye",
     "phone": "Telefon",
     "email": "E-Posta",
     "status": "Durum",
-    "kvkk": "KVKK",
     "photo": "Fotoğraf",
     "id": "ID",
-    "company": "Firma"
+    "created_at": "Yaratılma Tarihi"
   },
   "Authorization": {
     "operation": "Operasyon",
@@ -399,5 +400,158 @@
     "operation": "İşlemler",
     "customerDiscount": "Müşteri İndirimi",
     "discountOperation": "İndirim Yönetimi"
+  },
+  "UsersStudent": {
+    "id":"ID",
+    "user_id":"Kullanıcı ID",
+    "advisor_user_id":"Danışman Kullanıcı ID",
+    "department_id":"Departman ID",
+    "is_major":"Ana Dal mı?",
+    "status":"Durum"
+  },
+  "University": {
+    "id":"ID",
+    "name":"Okul Adı",
+    "bank_account":"Banka Hesap Numarası",
+    "address":"Adres",
+    "tel":"Telefon",
+    "logo":"Logo",
+    "status":"Durum",
+    "created_at":"Yaratılma Tarihi",
+    "updated_at":"Son Güncelleme"
+  },
+  "UsersAdmin": {
+    "id":"ID",
+    "user":"Kullanıcı ID",
+    "status":"Durum",
+    "created_at":"Yaratılma Tarihi"
+  },
+  "UsersInstructor": {
+    "id":"ID",
+    "user_id":"Kullanıcı ID",
+    "role":"Rol",
+    "status":"Durum",
+    "created_at":"Yaratılma Tarihi"
+  },
+  "Sts": {
+    "id":"ID",
+    "student_id":"Öğrenci Numarası",
+    "section_id":"Section Bilgisi",
+    "letter_grade":"Harf Notu",
+    "average":"Ortalama"
+  },
+  "Sgmgpo": {
+    "id":"ID",
+    "program_outcome_id":"PO ID",
+    "student_id":"Öğrenci Numarası",
+    "grade":"100 üzerinden Not",
+    "grade5":"5 üzerinden Not",
+    "created_at":"Yaratılma Tarihi"
+  },
+  "Sgmgco": {
+    "id":"ID",
+    "course_outcome_id":"CO ID",
+    "student_id":"Öğrenci Numarası",
+    "grade":"100 üzerinden Not",
+    "grade5":"5 üzerinden Not",
+    "created_at":"Yaratılma Tarihi"
+  },
+  "Section": {
+    "id":"ID",
+    "course_id":"Kurs ID",
+    "title":"Section Adı",
+    "status":"Durum",
+    "updated_at":"Güncelleme Tarihi",
+    "created_at":"Yaratılma Tarihi"
+  },
+  "Sagt": {
+    "id":"ID",
+    "student_id":"Öğrenci Numarı",
+    "grading_tool_id":"Değerlendirme Aracı ID",
+    "grade":"Not",
+    "created_at":"Yaratılma Tarihi"
+  },
+  "ProgramOutcome": {
+    "id":"ID",
+    "department_id":"Departman ID",
+    "year_and_term":"Yıl ve Dönem",
+    "code":"PO Kodu",
+    "explanation":"Açıklama",
+    "created_at":"Yaratılma Tarihi",
+    "updated_at":"Güncelleme Tarihi"
+  },
+  "Gtcco": {
+    "id":"ID",
+    "grading_tool_id":"Değerlendirme Aracı ID",
+    "course_outcome_id":"CO ID",
+    "created_at":"Yaratılma Tarihi"
+  },
+  "Igs": {
+    "id":"ID",
+    "instructor_email":"Eğitmen E-mail",
+    "section_id":"CO ID",
+    "created_at":"Yaratılma Tarihi",
+    "updated_at":"Güncelleme Tarihi"
+  },
+  "Popco": {
+    "id":"ID",
+    "course_outcome_id":"CO ID",
+    "program_outcome_id":"PO ID",
+    "created_at":"Yaratılma Tarihi",
+    "updated_at":"Güncelleme Tarihi"
+  },
+  "Department": {
+    "id":"ID",
+    "faculty":"Fakülte ID",
+    "name":"Adı",
+    "created_at":"Yaratılma Tarihi"
+  },
+  "GradingTool": {
+    "id":"ID",
+    "assessment_id":"Değerlendirme ID",
+    "question_number":"Soru",
+    "percentage":"Yüzde",
+    "created_at":"Yaratılma Tarihi",
+    "updated_at":"Güncelleme Tarihi"
+  },
+  "Faculty": {
+    "id":"ID",
+    "university":"Üniversite Adı",
+    "title":"Adı",
+    "status":"Durum",
+    "created_at":"Yaratılma Tarihi",
+    "token":"Token"
+  },
+  "DepartmentsHasInstructors": {
+    "id":"ID",
+    "department_id":"Departman ID",
+    "instructor_email":"Eğitmen E-mail",
+    "created_at":"Yaratılma Tarihi"
+  },
+  "Course": {
+    "id":"ID",
+    "name":"Ders Adı",
+    "year_and_term":"Yıl ve Dönem",
+    "code":"Ders Kodu",
+    "title":"Ders Adı",
+    "credit":"Kredi",
+    "status":"Durum"
+  },
+  "CourseOutcome": {
+    "id":"ID",
+    "explanation":"Açıklama",
+    "code":"CO Kodu",
+    "course_id":"Kurs ID",
+    "created_at":"Yaratılma Tarihi"
+  },
+  "Assessment": {
+    "id":"ID",
+    "name":"Adı",
+    "percentage":"Yüzde",
+    "course_id":"Kurs ID",
+    "created_at":"Yaratılma Tarihi",
+    "updated_at":"Güncelleme Tarihi"
   }
 }
+
+
