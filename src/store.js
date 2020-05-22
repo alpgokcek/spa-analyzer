@@ -476,6 +476,17 @@ export const store = new Vuex.Store({
         .then(user => {
           localStorage.setItem('userToken', user.data.access_token)
           localStorage.setItem('userName', user.data.name)
+          localStorage.setItem('userLevel', user.data.level)
+          switch (user.data.level) {
+            case '5':
+              localStorage.setItem('userUniversity', user.data.user.university)
+              localStorage.setItem('userFaculty', user.data.user.faculty_id)
+              localStorage.setItem('userDepartment', user.data.user.department_id)
+              break
+          
+            default:
+              break
+          }
           state.loginUser.name = localStorage.getItem('userName')
           axiosHeader = {
             headers: {
@@ -531,6 +542,10 @@ export const store = new Vuex.Store({
       localStorage.setItem('signed', false)
       localStorage.removeItem('userToken')
       localStorage.removeItem('userName')
+      localStorage.removeItem('userUniversity')
+      localStorage.removeItem('userFaculty')
+      localStorage.removeItem('userDepartment')
+      localStorage.removeItem('userLevel')
     },
     changeLang (state, payload) {
       state.appLang = payload.changedLang

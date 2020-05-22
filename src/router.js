@@ -10,6 +10,7 @@ import i18n from './i18n'
 import LayoutIndex from './pages/layout/'
 import LayoutCreate from './pages/layout/create'
 import LayoutUpdate from './pages/layout/update'
+import LayoutGet from './pages/layout/get'
 
 import FileUpload from './pages/Upload/create'
 import FileDelete from './pages/Upload/delete'
@@ -94,6 +95,8 @@ import Register from './Views/Auth/Register'
 import ForgotPassword from './Views/Auth/ForgotPassword'
 import ResetPassword from './Views/Auth/ResetPassword'
 
+import SgmgpoGet from './pages/Sgmgpo/get'
+
 Vue.use(Router)
 
 const routes = [
@@ -114,6 +117,8 @@ const routes = [
           { path: '/Department/:faculty', name: 'Department', component: DepartmentIndex, meta: { title: i18n.t('router.Department'), createLink: 'DepartmentCreate'} },
           { path: '/Course/:faculty/:department', name: 'Course', component: CourseIndex, meta: { title: i18n.t('router.Course'), createLink: 'CourseCreate'} },
           { path: '/Section/:faculty/:department/:course', name: 'Section', component: SectionIndex, meta: { title: i18n.t('router.Section'), createLink: 'SectionCreate'} },
+          { path: '/Sts/:department/:course/:section', name: 'Sts', component: StsIndex, meta: { title: i18n.t('router.Sts'), createLink: 'StsCreate'} },
+          { path: '/Sgmgpo/:program/:student', name: 'Sgmgpo', component: SgmgpoIndex, meta: { title: i18n.t('router.Sgmgpo'), createLink: 'SgmgpoCreate'} },
           { path: '/Authority', name: 'Authority', component: AuthorityIndex, meta: { title: i18n.t('router.Authority'), createLink: 'AuthorityCreate'} },
           { path: '/CourseOutcome', name: 'CourseOutcome', component: CourseOutcomeIndex, meta: { title: i18n.t('router.CourseOutcome'), createLink: 'CourseOutcomeCreate'} },
           { path: '/Assessment', name: 'Assessment', component: AssessmentIndex, meta: { title: i18n.t('router.Assessment'), createLink: 'AssessmentCreate'} },
@@ -126,14 +131,17 @@ const routes = [
           { path: '/Popco', name: 'Popco', component: PopcoIndex, meta: { title: i18n.t('router.Popco'), createLink: 'PopcoCreate'} },
           { path: '/Sagt', name: 'Sagt', component: SagtIndex, meta: { title: i18n.t('router.Sagt'), createLink: 'SagtCreate'} },
           { path: '/Sgmgco', name: 'Sgmgco', component: SgmgcoIndex, meta: { title: i18n.t('router.Sgmgco'), createLink: 'SgmgcoCreate'} },
-          { path: '/Sgmgpo', name: 'Sgmgpo', component: SgmgpoIndex, meta: { title: i18n.t('router.Sgmgpo'), createLink: 'SgmgpoCreate'} },
-          { path: '/Sts/:department/:course/:section', name: 'Sts', component: StsIndex, meta: { title: i18n.t('router.Sts'), createLink: 'StsCreate'} },
           { path: '/University', name: 'University', component: UniversityIndex, meta: { title: i18n.t('router.University'), createLink: 'UniversityCreate'} },
           { path: '/User', name: 'User', component: UserIndex, meta: { title: i18n.t('router.User'), createLink: 'UserCreate'} },
           { path: '/UsersAdmin', name: 'UsersAdmin', component: UsersAdminIndex, meta: { title: i18n.t('router.UsersAdmin'), createLink: 'UsersAdminCreate'} },
           { path: '/UsersStudent', name: 'UsersStudent', component: UsersStudentIndex, meta: { title: i18n.t('router.UsersStudent'), createLink: 'UsersStudentCreate'} },
           { path: '/UsersInstructor', name: 'UsersInstructor', component: UsersInstructorIndex, meta: { title: i18n.t('router.UsersInstructor'), createLink: 'UsersInstructorCreate'} },
           { path: '/CheckAuth', name: 'CheckAuth', component: CheckAuthIndex, meta: { title: i18n.t('router.CheckAuth'), createLink: 'CheckAuthCreate'} },
+        ]
+      },
+      {
+        path: '/Get', component: LayoutGet, children: [
+          { path: '/SgmgpoGet/:program/:student', name: 'SgmgpoGet', component: SgmgpoGet, meta: { title: i18n.t('router.Sgmgpo'), createLink: 'SgmgpoCreate'} },
         ]
       },
       {

@@ -1,41 +1,9 @@
 <template>
-  <DxDataGrid
-    class="asc__listPage-dataGrid"
-    id="gridContainer"
-    :data-source="tableData"
-    ref="dataGrid"
-    :show-borders="false"
-    :show-column-lines="true"
-    :show-row-lines="false"
-    remote-operations="true"
-    :row-alternation-enabled="true"
-    :allow-column-reordering="true"
-    :allow-column-resizing="true"
-    :column-auto-width="true"
-    :selection="{ mode: 'single' }"
-    @selection-changed="optionSelected"
-    >
-    <DxFilterRow :visible="true" apply-filter="auto"/>
-    <DxHeaderFilter :visible="true"/>
-    <DxColumnFixing :enabled="true"/>
-    <DxColumn
-      v-for="(row,i) in tableRows"
-      :key="i"
-      :data-field="row.field"
-      :caption="$t( 'Department.' + row.field)"
-      :format="row.format"
-      :data-type="row.dataType"
-      :alignment="row.alignment"
-      :cell-template="row.cellTemplate"
-    />
-    <template #tokenCell="cell">
-      <div class="asc__listPage-operations">
-        <router-link :to="{name: 'ProgramOutcome', params: {department: $route.params.department, student: cell.data.value}}" v-b-tooltip.hover :title="$t('list.users')"><i class="fas fa-eye"></i></router-link>
-      </div>
+  <b-table responsive striped hover :items="tableData" :fields="rows" size="sm">
+    <template v-slot:cell(id)="row">
+      <router-link :to="{name: 'ProgramOutcome', params: {department: $route.params.department, student: row.item.student_id}}" v-b-tooltip.hover :title="$t('list.users')"><i class="fas fa-eye"></i></router-link>
     </template>
-
-    <DxPager :show-page-size-selector="true" :allowed-page-sizes="[10, 20, 50, 100]" />
-  </DxDataGrid>
+  </b-table>
 </template>
 <script>
 import { mapState } from 'vuex'
@@ -45,11 +13,11 @@ export default {
       routeName: this.$route.name,
       selectedRow: '',
       rows: [
-        {visible: true, field: 'userName', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: true, field: 'sectionTitle', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: true, field: 'letter_grade', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: false, field: 'average', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {visible: true, field: 'id', format: '', dataType: '', alignment: '', cellTemplate: 'tokenCell'}
+        {key: 'userName', field: 'Sts.userName'},
+        {key: 'sectionTitle', field: 'Sts.sectionTitle'},
+        {key: 'letter_grade', field: 'Sts.letter_grade'},
+        {key: 'average', field: 'Sts.average'},
+        {key: 'id', field: 'Sts.id'},
       ]
     }
   },
@@ -58,13 +26,13 @@ export default {
   },
   watch: {
     '$route' (to) {
-      let url = to.name === 'student' ? 'sts?student=' + to.params.student : to.name === 'section' ? 'sts?section=' + to.params.section : 'sts'
-      this.getData(url)
+      // let url = to.name === 'student' ? 'sts?student=' + to.params.student : to.name === 'section' ? 'sts?section=' + to.params.section : 'sts'
+      this.getData('sts?section=' + to.params.section)
     }
   },
   mounted () {
-    let url = this.$route.params.name === 'student' ? 'sts?student=' + this.$route.params.student : this.$route.params.name === 'section' ? 'sts?section=' + this.$route.params.section : 'sts'
-    this.getData(url)
+    // let url = this.$route.params.name === 'student' ? 'sts?student=' + this.$route.params.student : this.$route.params.name === 'section' ? 'sts?section=' + this.$route.params.section : 'sts'
+    this.getData('sts?section=' + this.$route.params.section)
     this.setRows()
   },
   methods: {

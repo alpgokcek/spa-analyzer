@@ -11,7 +11,7 @@ import { admin, instructor } from './nav.js'
 export default {
   data () {
     return {
-      items: instructor
+      items: localStorage.getItem('userLevel') === '5' ? instructor : admin
     }
   },
   computed: {

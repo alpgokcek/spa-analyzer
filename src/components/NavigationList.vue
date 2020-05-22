@@ -2,7 +2,7 @@
   <ul class="asc__navigation-list">
     <li v-for="(item,i) in data" :key="'i'+i">
       <template v-if="!item.sub.length >= 1">
-        <router-link active-class="asc__navigation-active" exact :to="{name: item.router}">
+        <router-link active-class="asc__navigation-active" exact :to="{name: item.router, params: item.params }">
           <b-icon class="asc__navigation-list-icon" :icon="item.icon ? item.icon : defaultIcon"></b-icon> {{item.title}}
         </router-link>
       </template>
