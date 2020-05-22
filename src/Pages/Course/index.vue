@@ -1,41 +1,9 @@
 <template>
-  <DxDataGrid
-    class="asc__listPage-dataGrid"
-    id="gridContainer"
-    :data-source="tableData"
-    ref="dataGrid"
-    :show-borders="false"
-    :show-column-lines="true"
-    :show-row-lines="false"
-    remote-operations="true"
-    :row-alternation-enabled="true"
-    :allow-column-reordering="true"
-    :allow-column-resizing="true"
-    :column-auto-width="true"
-    :selection="{ mode: 'single' }"
-    @selection-changed="optionSelected"
-    >
-    <DxFilterRow :visible="true" apply-filter="auto"/>
-    <DxHeaderFilter :visible="true"/>
-    <DxColumnFixing :enabled="true"/>
-    <DxColumn
-      v-for="(row,i) in tableRows"
-      :key="i"
-      :data-field="row.field"
-      :caption="$t( 'Department.' + row.field)"
-      :format="row.format"
-      :data-type="row.dataType"
-      :alignment="row.alignment"
-      :cell-template="row.cellTemplate"
-    />
-    <template #tokenCell="cell">
-      <div class="asc__listPage-operations">
-        <router-link :to="{name: 'Section', params: {department: $route.params.department, course: $route.params.code, code: cell.data.value}}" v-b-tooltip.hover :title="$t('list.sections')"><i class="fas fa-eye"></i></router-link>
-      </div>
+  <b-table responsive striped hover :items="tableData" :fields="rows" size="sm">
+    <template v-slot:cell(id)="cell">
+        <router-link :to="{name: 'Section', params: {faculty: $route.params.faculty, department: $route.params.department, course: cell.item.id}}" v-b-tooltip.hover :title="$t('list.sections')"><i class="fas fa-eye"></i></router-link>
     </template>
-
-    <DxPager :show-page-size-selector="true" :allowed-page-sizes="[10, 20, 50, 100]" />
-  </DxDataGrid>
+  </b-table>
 </template>
 <script>
 import { mapState } from 'vuex'
@@ -45,13 +13,13 @@ export default {
       routeName: this.$route.name,
       selectedRow: '',
       rows: [
-        {field: 'code', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'year_and_term', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'title', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'credit', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'date_time', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'departmentName', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'id', format: '', dataType: '', alignment: '', cellTemplate: 'tokenCell'}
+        {key: 'code', label: 'Course.code'},
+        {key: 'year_and_term', label: 'Course.year_and_term'},
+        {key: 'title', label: 'Course.title'},
+        {key: 'credit', label: 'Course.credit'},
+        {key: 'date_time', label: 'Course.date_time'},
+        {key: 'departmentName', label: 'Course.departmentName'},
+        {key: 'id', label: 'Course.id'}
       ]
     }
   },
@@ -60,15 +28,15 @@ export default {
   },
   watch: {
     '$route' (to) {
-      let url = ''
-      to.name === 'department' ? url = 'course?department=' + to.params.department : to.name === 'code' ? url = 'course?code=' + to.params.code : url = 'course'
-      this.getData(url)
+      // let url = ''
+      // to.name === 'department' ? url = 'course?department=' + to.params.department : to.name === 'code' ? url = 'course?code=' + to.params.code : url = 'course'
+      this.getData('course?department=' + to.params.department)
     }
   },
   mounted () {
-    let url = ''
-    this.$route.params.name === 'department' ? url = 'course?department=' + this.$route.params.department : this.$route.params.name === 'code' ? url = 'course?code=' + this.$route.params.code : url = 'course'
-    this.getData(url)
+    // let url = ''
+    // this.$route.params.name == 'Course' ? url = 'course?department=' + this.$route.params.department : this.$route.params.name == 'code' ? url = 'course?code=' + this.$route.params.code : url = 'course'
+    this.getData('course?department=' + this.$route.params.department)
     this.setRows()
   },
   methods: {
@@ -77,22 +45,6 @@ export default {
     },
     getData (e) {
       this.$store.dispatch('getTableData', { ...this.data, link: e })
-    },
-    balanceCell (rowData) {
-      return rowData.level
-    },
-    creditCell (rowData) {
-      return rowData.credit + ' €'
-    },
-    hideRow (e) {
-      // console.log(e)
-    },
-    optionSelected ({ selectedRowsData }) {
-      this.selectedRow = selectedRowsData[0]
-      console.log(this.selectedRow)
-    },
-    operationClick (e) {
-      this.$router.push({name: e.itemData.route, params: {url: this.selectedRow.token}})
     }
   }
 }

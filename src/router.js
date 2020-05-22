@@ -11,6 +11,9 @@ import LayoutIndex from './pages/layout/'
 import LayoutCreate from './pages/layout/create'
 import LayoutUpdate from './pages/layout/update'
 
+import FileUpload from './pages/Upload/create'
+import FileDelete from './pages/Upload/delete'
+
 import AuthorityIndex from './pages/Authority/'
 import CourseIndex from './pages/Course/'
 import CourseOutcomeIndex from './pages/CourseOutcome/'
@@ -107,20 +110,20 @@ const routes = [
       },
       {
         path: '/', component: LayoutIndex, children: [
+          { path: '/Faculty', name: 'Faculty', component: FacultyIndex, meta: { title: i18n.t('router.Faculty'), createLink: 'FacultyCreate'} },
+          { path: '/Department/:faculty', name: 'Department', component: DepartmentIndex, meta: { title: i18n.t('router.Department'), createLink: 'DepartmentCreate'} },
+          { path: '/Course/:faculty/:department', name: 'Course', component: CourseIndex, meta: { title: i18n.t('router.Course'), createLink: 'CourseCreate'} },
+          { path: '/Section/:faculty/:department/:course', name: 'Section', component: SectionIndex, meta: { title: i18n.t('router.Section'), createLink: 'SectionCreate'} },
           { path: '/Authority', name: 'Authority', component: AuthorityIndex, meta: { title: i18n.t('router.Authority'), createLink: 'AuthorityCreate'} },
-          { path: '/Course/:department/:code', name: 'Course', component: CourseIndex, meta: { title: i18n.t('router.Course'), createLink: 'CourseCreate'} },
           { path: '/CourseOutcome', name: 'CourseOutcome', component: CourseOutcomeIndex, meta: { title: i18n.t('router.CourseOutcome'), createLink: 'CourseOutcomeCreate'} },
           { path: '/Assessment', name: 'Assessment', component: AssessmentIndex, meta: { title: i18n.t('router.Assessment'), createLink: 'AssessmentCreate'} },
-          { path: '/Department/:id', name: 'Department', component: DepartmentIndex, meta: { title: i18n.t('router.Department'), createLink: 'DepartmentCreate'} },
           { path: '/DepartmentsHasInstructors', name: 'DepartmentsHasInstructors', component: DepartmentsHasInstructorsIndex, meta: { title: i18n.t('router.DepartmentsHasInstructors'), createLink: 'DepartmentsHasInstructorsCreate'} },
-          { path: '/Faculty', name: 'Faculty', component: FacultyIndex, meta: { title: i18n.t('router.Faculty'), createLink: 'FacultyCreate'} },
           { path: '/GradingTool', name: 'GradingTool', component: GradingToolIndex, meta: { title: i18n.t('router.GradingTool'), createLink: 'GradingToolCreate'} },
           { path: '/Gtcco', name: 'Gtcco', component: GtccoIndex, meta: { title: i18n.t('router.Gtcco'), createLink: 'GtccoCreate'} },
           { path: '/Igs', name: 'Igs', component: IgsIndex, meta: { title: i18n.t('router.Igs'), createLink: 'IgsCreate'} },
           { path: '/Log', name: 'Log', component: LogIndex, meta: { title: i18n.t('router.Log'), createLink: 'LogCreate'} },
           { path: '/ProgramOutcome/:department/:student', name: 'ProgramOutcome', component: ProgramOutcomeIndex, meta: { title: i18n.t('router.ProgramOutcome'), createLink: 'ProgramOutcomeCreate'} },
           { path: '/Popco', name: 'Popco', component: PopcoIndex, meta: { title: i18n.t('router.Popco'), createLink: 'PopcoCreate'} },
-          { path: '/Section/:department/:course/:code', name: 'Section', component: SectionIndex, meta: { title: i18n.t('router.Section'), createLink: 'SectionCreate'} },
           { path: '/Sagt', name: 'Sagt', component: SagtIndex, meta: { title: i18n.t('router.Sagt'), createLink: 'SagtCreate'} },
           { path: '/Sgmgco', name: 'Sgmgco', component: SgmgcoIndex, meta: { title: i18n.t('router.Sgmgco'), createLink: 'SgmgcoCreate'} },
           { path: '/Sgmgpo', name: 'Sgmgpo', component: SgmgpoIndex, meta: { title: i18n.t('router.Sgmgpo'), createLink: 'SgmgpoCreate'} },
@@ -159,6 +162,8 @@ const routes = [
           { path: '/Create/UsersStudent', name: 'UsersStudentCreate', component: UsersStudentCreate, meta: { title: i18n.t('router.UsersStudentCreate'), baseLink: 'UsersStudent' } },
           { path: '/Create/UsersInstructor', name: 'UsersInstructorCreate', component: UsersInstructorCreate, meta: { title: i18n.t('router.UsersInstructorCreate'), baseLink: 'UsersInstructor' } },
           { path: '/Create/CheckAuth', name: 'CheckAuthCreate', component: CheckAuthCreate, meta: { title: i18n.t('router.CheckAuthCreate'), baseLink: 'CheckAuth' } },
+          { path: '/Create/Upload/:department/:course/:section', name: 'FileUpload', component: FileUpload, meta: { title: i18n.t('router.FileUpload'), baseLink: 'Section' } },
+          { path: '/Delete/Upload/:department/:course/:section', name: 'FileDelete', component: FileDelete, meta: { title: i18n.t('router.FileDelete'), baseLink: 'Section' } },
         ]
       },
       {

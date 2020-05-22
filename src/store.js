@@ -54,8 +54,8 @@ export const store = new Vuex.Store({
       },
       paramName: 'uploadFile'
     },
-    pinUploadOptions: {
-      url: `${apiLink}pinupload`,
+    excelUploadOptions: {
+      url: 'https://cors-anywhere.herokuapp.com/https://spa-analyzer-flask.herokuapp.com/file-upload',
       thumbnailHeight: 100,
       maxFilesize: 10,
       autoProcessQueue: false,
@@ -64,7 +64,7 @@ export const store = new Vuex.Store({
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('userToken')
       },
-      paramName: 'uploadFile'
+      paramName: 'file'
     },
     editorJs: {
       // paragraph: {
@@ -189,37 +189,8 @@ export const store = new Vuex.Store({
     cargoPrice: parseFloat('19.99'),
     cargoDay: parseFloat('4'),
     // listeler -->
-    allCompanies: [],
-    allCustomers: [],
-    allBalances: [],
-    allDiscounts: [],
-    allUsers: [],
-    allCountries: [],
-    allCities: [],
-    allCustomerTypes: [],
-    allPinTypes: [],
-    allUserLevels: [],
-    allPaymentTypes: [],
-    allBanks: [],
-    allBrands: [],
-    allColors: [],
-    allStorages: [],
-    allTariffs: [],
-    allPackages: [],
-    allPhones: [],
-    allMerges: [],
-    allPins: [],
-    allPinCodes: [],
-    getCompany: [],
-    getCustomer: [],
-    getUser: [],
-    getPhone: [],
-    getTariff: [],
-    getPackage: [],
-    getAuthority: [],
-    getMerge: [],
-    getPPM: [],
-    getPin: []
+    allCourses: [],
+    getCourse: []
     // <-- listeler
   },
   actions: {
@@ -296,6 +267,26 @@ export const store = new Vuex.Store({
         this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
       })
     },
+    deleteFile ({ commit }, data) {
+      axios.post( `https://cors-anywhere.herokuapp.com/https://spa-analyzer-flask.herokuapp.com/file-remove`, data.info, axiosHeader)
+      .then(res => {
+        let ret = res.data.success
+        if (ret == true) {
+          this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'success'})
+          commit('setReturn', data.retcount)
+          commit('setLog', res.data.data)
+          if (data.retcount === 0) {
+            router.push({name: data.turn})
+          }
+        } else {
+          this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+        }
+      })
+      .catch(err=> {
+        console.log(err)
+        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
+      })
+    },
     // <-- TÜM create - update - delete işlemleri
     // listeler -->
 
@@ -303,7 +294,26 @@ export const store = new Vuex.Store({
 
     },
     getCourse ({ state, commit}, data) {
-
+      axios.get(`course${data.param}`, axiosHeader)
+      .then(res => {
+        switch (res.status) {
+          case 404:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.allCourses = []
+            break
+          case 200:
+            state.allCourses = res.data.data
+            break
+          default:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.allCourses = []
+            break
+        }
+      })
+      .catch(err=> {
+        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
+        state.allCourses = []
+      })
     },
     getCourseOutcome ({ state, commit}, data) {
 
@@ -375,668 +385,31 @@ export const store = new Vuex.Store({
 
     },
 
-    getCompanies ({ state }, data) {
-      axios.get(`company?${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allCompanies = []
-            break
-          case 200:
-            state.allCompanies = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allCompanies = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allCompanies = []
-      })
-    },
-    getCustomers ({ state }, data) {
-      axios.get(`customer?${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allCustomers = []
-            break
-          case 200:
-            state.allCustomers = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allCustomers = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allCustomers = []
-      })
-    },
-    getBalance ({ state }, data) {
-      axios.get(`balance${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allBalances = []
-            break
-          case 200:
-            state.allBalances = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allBalances = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allBalances = []
-      })
-    },
-    getDiscount ({ state }, data) {
-      axios.get(`discount${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allDiscounts = []
-            break
-          case 200:
-            state.allDiscounts = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allDiscounts = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allDiscounts = []
-      })
-    },
-    getUsers ({ state }, data) {
-      axios.get(`user?${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allUsers = []
-            break
-          case 200:
-            state.allUsers = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allUsers = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allUsers = []
-      })
-    },
-    getMerges ({ state }, data) {
-      axios.get(`authMerge?${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allMerges = []
-            break
-          case 200:
-            state.allMerges = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allMerges = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allMerges = []
-      })
-    },
-    getTariffs ({ state }, data) {
-      axios.get(`tariff${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allTariffs = []
-            break
-          case 200:
-            state.allTariffs = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allTariffs = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allTariffs = []
-      })
-    },
-    getPackage ({ state }, data) {
-      axios.get(`tariffPack${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPackages = []
-            break
-          case 200:
-            state.allPackages = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPackages = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allPackages = []
-      })
-    },
-    getPhones({ state }, data) {
-      axios.get(`product?type=cellPhone${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPhones = []
-            break
-          case 200:
-            state.allPhones = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPhones = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allPhones = []
-      })
-    },
-    getCountries ({ state }) {
-      axios.get(`settings/country`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allCountries = []
-            break
-          case 200:
-            state.allCountries = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allCountries = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allCountries = []
-      })
-    },
-    getCities ({ state }, data) {
-      axios.get(`settings/city${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allCities = []
-            break
-          case 200:
-            state.allCities = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allCities = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allCities = []
-      })
-    },
-    getCustomerTypes ({ state }, data) {
-      axios.get(`settings/level${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allCustomerTypes = []
-            break
-          case 200:
-            state.allCustomerTypes = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allCustomerTypes = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allCustomerTypes = []
-      })
-    },
-    getPinTypes ({ state }, data) {
-      axios.get(`settings/level${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPinTypes = []
-            break
-          case 200:
-            state.allPinTypes = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPinTypes = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allPinTypes = []
-      })
-    },
-    getPins ({ state }, data) {
-      axios.get(`pins${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPins = []
-            break
-          case 200:
-            state.allPins = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPins = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allPins = []
-      })
-    },
-    getPinCodes ({ state }, data) {
-      axios.get(`pincode${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPinCodes = []
-            break
-          case 200:
-            state.allPinCodes = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPinCodes = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allPinCodes = []
-      })
-    },
-    getUserLevels ({ state }, data) {
-      axios.get(`settings/level${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allUserLevels = []
-            break
-          case 200:
-            state.allUserLevels = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allUserLevels = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allUserLevels = []
-      })
-    },
-    getPaymentTypes ({ state }, data) {
-      axios.get(`settings/level${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPaymentTypes = []
-            break
-          case 200:
-            state.allPaymentTypes = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allPaymentTypes = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allPaymentTypes = []
-      })
-    },
-    getBrands ({ state }, data) {
-      axios.get(`settings/brand${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allBrands = []
-            break
-          case 200:
-            state.allBrands = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allBrands = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allBrands = []
-      })
-    },
-    getColors({ state }, data) {
-      axios.get(`settings/color${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allColors = []
-            break
-          case 200:
-            state.allColors = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allColors = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allColors = []
-      })
-    },
-    getStorages({ state }, data) {
-      axios.get(`settings/storage${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allStorages = []
-            break
-          case 200:
-            state.allStorages = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allStorages = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allStorages = []
-      })
-    },
-    getBanks({ state }, data) {
-      axios.get(`bank${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allBanks = []
-            break
-          case 200:
-            state.allBanks = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.allBanks = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.allBanks = []
-      })
-    },
+    
     // <-- listeler
     // detaylar -->
-    showPackage ({ state }, data) {
-      axios.get(`tariffPack/${data.param}`, axiosHeader)
+    showCourse ({ state }, data) {
+      axios.get(`course/${data.param}`, axiosHeader)
       .then(res => {
+        state.bigLoading = false
         switch (res.status) {
           case 404:
             this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getPackage = []
+            state.getCourse = []
             break
           case 200:
-            state.getPackage = res.data.data
+            state.getCourse = res.data.data
             break
           default:
             this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getPackage = []
+            state.getCourse = []
             break
         }
       })
       .catch(err=> {
         this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.getPackage = []
-      })
-    },
-    showPhone({ state }, data) {
-      axios.get(`product/${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getPhone = []
-            break
-          case 200:
-            state.getPhone = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getPhone = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.getPhone = []
-      })
-    },
-    showTariff ({ state }, data) {
-      axios.get(`tariff/${data.param}`, axiosHeader)
-      .then(res => {
-      switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getTariff = []
-            break
-          case 200:
-            state.getTariff = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getTariff = []
-            break
-        }
-      })
-      .catch(err=> {
-      console.log(err)
-      this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.getTariff = []
-      })
-    },
-    showPPM ({ state }, data) {
-      axios.get(`ppm/${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getPPM = []
-            break
-          case 200:
-            state.getPPM = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getPPM = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.getPPM = []
-      })
-    },
-    showMerge ({ state }, data) {
-      axios.get(`authMerge/${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getMerge = []
-            break
-          case 200:
-            state.getMerge = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getMerge = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.getMerge = []
-      })
-    },
-    showAuthority ({ state }, data) {
-      axios.get(`authority/${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getAuthority = []
-            break
-          case 200:
-            state.getAuthority = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getAuthority = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.getAuthority = []
-      })
-    },
-    showUser ({ state }, data) {
-      axios.get(`user/${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getUser = []
-            break
-          case 200:
-            state.getUser = res.data.data
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getUser = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.getUser = []
-      })
-    },
-    showCustomer ({ state }, data) {
-      axios.get(`customer/${data.param}`, axiosHeader)
-      .then(res => {
-        switch (res.status) {
-          case 404:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getCustomer = []
-            break
-          case 200:
-            state.getCustomer = res.data.data[0]
-            break
-          default:
-            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-            state.getCustomer = []
-            break
-        }
-      })
-      .catch(err=> {
-        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.getCustomer = []
-      })
-    },
-    showPin ({ state }, data) {
-      axios.get(`pins/${data.param}`, axiosHeader)
-      .then(res => {
-      switch (res.status) {
-        case 404:
-          this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-          state.getPin = []
-          break
-        case 200:
-          state.getPin = res.data.data
-          break
-        default:
-          this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
-          state.getPin = []
-          break
-        }
-      })
-      .catch(err=> {
-      console.log(err)
-      this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
-        state.getTariff = []
+        state.bigLoading = false
+        state.getCourse = []
       })
     },
     // <-- detaylar

@@ -1,42 +1,9 @@
 <template>
-  <DxDataGrid
-    class="asc__listPage-dataGrid"
-    id="gridContainer"
-    :data-source="tableData"
-    ref="dataGrid"
-    :show-borders="false"
-    :show-column-lines="true"
-    :show-row-lines="false"
-    remote-operations="true"
-    :row-alternation-enabled="true"
-    :allow-column-reordering="true"
-    :allow-column-resizing="true"
-    :column-auto-width="true"
-    :selection="{ mode: 'single' }"
-    @selection-changed="optionSelected"
-    >
-    <DxColumn
-      v-for="(row,i) in tableRows"
-      :key="i"
-      :data-field="row.field"
-      :caption="$t( 'Department.' + row.field)"
-      :format="row.format"
-      :data-type="row.dataType"
-      :alignment="row.alignment"
-      :cell-template="row.cellTemplate"
-    />
-    <DxFilterRow :visible="true" apply-filter="auto"/>
-    <DxHeaderFilter :visible="true"/>
-    <DxColumnFixing :enabled="true"/>
-
-    <template #tokenCell="cell">
-      <div class="asc__listPage-operations">
-        <router-link :to="{name: 'Course', params: {department: $route.params.id, code: cell.data.value}}" v-b-tooltip.hover :title="$t('list.courses')"><i class="fas fa-eye"></i></router-link>
-      </div>
+  <b-table responsive striped hover :items="tableData" :fields="rows" size="sm">
+    <template v-slot:cell(id)="cell">
+      <router-link :to="{name: 'Course', params: {faculty: $route.params.faculty, department: cell.item.id}}" v-b-tooltip.hover :title="$t('list.courses')"><i class="fas fa-eye"></i></router-link>
     </template>
-
-    <DxPager :show-page-size-selector="true" :allowed-page-sizes="[10, 20, 50, 100]" />
-  </DxDataGrid>
+  </b-table>
 </template>
 <script>
 import { mapState } from 'vuex'
@@ -46,11 +13,10 @@ export default {
       routeName: this.$route.name,
       selectedRow: '',
       rows: [
-        {field: 'name', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'facultyName', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'universityName', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        // {field: 'faculty', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'id', format: '', dataType: '', alignment: '', cellTemplate: 'tokenCell'}
+        { key: 'name', label: 'Department.name'},
+        { key: 'facultyName', label: 'Department.facultyName'},
+        { key: 'universityName', label: 'Department.universityName'},
+        { key: 'id', label: 'Department.id'}
       ]
     }
   },
@@ -67,11 +33,7 @@ export default {
     }
   },
   mounted () {
-    if (this.$route.name === 'faculty') {
-      this.getData('department?faculty=' + this.$route.params.faculty)
-    } else {
-      this.getData('department')
-    }
+    this.getData('department?faculty=' + this.$route.params.faculty)
     this.setRows()
   },
   methods: {
@@ -80,22 +42,6 @@ export default {
     },
     getData (e) {
       this.$store.dispatch('getTableData', { ...this.data, link: e })
-    },
-    balanceCell (rowData) {
-      return rowData.level
-    },
-    creditCell (rowData) {
-      return rowData.credit + ' €'
-    },
-    hideRow (e) {
-      // console.log(e)
-    },
-    optionSelected ({ selectedRowsData }) {
-      this.selectedRow = selectedRowsData[0]
-      console.log(this.selectedRow)
-    },
-    operationClick (e) {
-      this.$router.push({name: e.itemData.route, params: {url: this.selectedRow.token}})
     }
   }
 }

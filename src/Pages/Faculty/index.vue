@@ -1,40 +1,9 @@
 <template>
-  <DxDataGrid
-    class="asc__listPage-dataGrid"
-    id="gridContainer"
-    :data-source="tableData"
-    ref="dataGrid"
-    :show-borders="false"
-    :show-column-lines="true"
-    :show-row-lines="false"
-    remote-operations="true"
-    :row-alternation-enabled="true"
-    :allow-column-reordering="true"
-    :allow-column-resizing="true"
-    :column-auto-width="true"
-    :selection="{ mode: 'single' }"
-    @selection-changed="optionSelected"
-    >
-    <DxFilterRow :visible="true" apply-filter="auto"/>
-    <DxHeaderFilter :visible="true"/>
-    <DxColumnFixing :enabled="true"/>
-    <DxColumn
-      v-for="(row,i) in tableRows"
-      :key="i"
-      :data-field="row.field"
-      :caption="$t( 'Faculty.' + row.field)"
-      :format="row.format"
-      :data-type="row.dataType"
-      :alignment="row.alignment"
-      :cell-template="row.cellTemplate"
-    />
-    <template #tokenCell="cell">
-      <div class="asc__listPage-operations">
-        <router-link :to="{name: 'Department', params: {id: cell.data.value}}" v-b-tooltip.hover :title="$t('list.departments')"><i class="fas fa-eye"></i></router-link>
-      </div>
+  <b-table responsive striped hover :items="tableData" :fields="rows" size="sm">
+    <template v-slot:cell(id)="cell">
+      <router-link :to="{name: 'Department', params: {faculty: cell.item.id}}" v-b-tooltip.hover :title="$t('list.departments')"><i class="fas fa-eye"></i></router-link>
     </template>
-    <DxPager :show-page-size-selector="true" :allowed-page-sizes="[10, 20, 50, 100]" />
-  </DxDataGrid>
+  </b-table>
 </template>
 <script>
 import { mapState } from 'vuex'
@@ -44,10 +13,9 @@ export default {
       routeName: this.$route.name,
       selectedRow: '',
       rows: [
-        {field: 'universityName', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'title', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        // {field: 'status', format: '', dataType: '', alignment: '', cellTemplate: ''},
-        {field: 'id', format: '', dataType: '', alignment: '', cellTemplate: 'tokenCell'}
+        {key: 'universityName', label: 'Faculty.universityName'},
+        {key: 'title', label: 'Faculty.title'},
+        {key: 'id', label: 'Faculty.id'},
       ]
     }
   },
@@ -69,10 +37,6 @@ export default {
     },
     getData (e) {
       this.$store.dispatch('getTableData', { ...this.data, link: e })
-    },
-    optionSelected ({ selectedRowsData }) {
-      this.selectedRow = selectedRowsData[0]
-      console.log(this.selectedRow)
     }
   }
 }
