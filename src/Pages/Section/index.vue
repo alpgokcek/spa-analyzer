@@ -1,5 +1,8 @@
 <template>
   <b-table responsive striped hover :items="tableData" :fields="rows" size="sm">
+    <template v-slot:cell(id)="row">
+      <router-link :to="{name: 'Sts', params: {faculty: $route.params.faculty, department: $route.params.department, course: $route.params.course, section: row.item.id}}" v-b-tooltip.hover :title="$t('list.users')"><i class="fas fa-eye"></i></router-link>
+    </template>
     <template v-slot:cell(is_file_uploaded)="row">
       <router-link :to="{name: 'FileDelete', params: {department: $route.params.department, course: $route.params.course, section: row.item.id }}" v-if="row.item.is_file_uploaded === 1" class="btn btn-sm btn-danger" :title="$t('list.deleteFile')">
         <i class="fas fa-trash"></i> <span>{{ $t('list.deleteFile') }}</span>

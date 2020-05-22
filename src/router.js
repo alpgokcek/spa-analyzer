@@ -127,7 +127,7 @@ const routes = [
           { path: '/Sagt', name: 'Sagt', component: SagtIndex, meta: { title: i18n.t('router.Sagt'), createLink: 'SagtCreate'} },
           { path: '/Sgmgco', name: 'Sgmgco', component: SgmgcoIndex, meta: { title: i18n.t('router.Sgmgco'), createLink: 'SgmgcoCreate'} },
           { path: '/Sgmgpo', name: 'Sgmgpo', component: SgmgpoIndex, meta: { title: i18n.t('router.Sgmgpo'), createLink: 'SgmgpoCreate'} },
-          { path: '/Sts/:department/:course/:section/:student', name: 'Sts', component: StsIndex, meta: { title: i18n.t('router.Sts'), createLink: 'StsCreate'} },
+          { path: '/Sts/:department/:course/:section', name: 'Sts', component: StsIndex, meta: { title: i18n.t('router.Sts'), createLink: 'StsCreate'} },
           { path: '/University', name: 'University', component: UniversityIndex, meta: { title: i18n.t('router.University'), createLink: 'UniversityCreate'} },
           { path: '/User', name: 'User', component: UserIndex, meta: { title: i18n.t('router.User'), createLink: 'UserCreate'} },
           { path: '/UsersAdmin', name: 'UsersAdmin', component: UsersAdminIndex, meta: { title: i18n.t('router.UsersAdmin'), createLink: 'UsersAdminCreate'} },
