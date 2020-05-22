@@ -28,12 +28,12 @@ export default {
   watch: {
     '$route' (to) {
       // let url = to.name === 'code' ? 'program-outcome?code=' + to.params.code : to.name === 'department' ? 'program-outcome?department=' + to.params.department : 'program-outcome'
-      this.getData('program-outcome')
+      this.getData('program-outcome' + to.params.department)
     }
   },
   mounted () {
     // let url = this.$route.params.name === 'code' ? 'program-outcome?code=' + this.$route.params.code : this.$route.params.name === 'department' ? 'program-outcome?department=' + this.$route.params.department : 'program-outcome'
-    this.getData('program-outcome')
+    this.getData('program-outcome?department=' + this.$route.params.department)
     this.setRows()
   },
   methods: {
