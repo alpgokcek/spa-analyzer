@@ -6,17 +6,33 @@
 <script>
 
 import { mapState } from 'vuex'
-import { admin, instructor } from './nav.js'
+import { admin } from './nav.js'
 
 export default {
   data () {
     return {
-      items: localStorage.getItem('userLevel') === '5' ? instructor : admin
+      instructor: [
+        { title: this.$t('nav.home'),router: 'Dashboard',icon: 'graph-up',params: {},sub: [] },
+        { 
+          title: this.$t('nav.CourseIndex'),
+          router: 'Course',
+          icon: '',
+          data: { 
+            faculty: localStorage.getItem('userFaculty'),
+            department: localStorage.getItem('userDepartment')
+          },
+          sub: []
+        }
+      ],
+      items: []
     }
   },
   computed: {
     ...mapState(['system', 'style'])
-  }
+  },
+  created() {
+    this.items = localStorage.getItem('userLevel') === '5' ? this.instructor : admin
+  },
 }
 </script>
 <style scoped lang="sass">

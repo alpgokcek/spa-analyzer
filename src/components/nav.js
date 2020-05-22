@@ -28,8 +28,3 @@ export const admin = [
     {title: i18n.t('nav.CheckAuthIndex'), router: 'CheckAuth', icon: '', params: {}, sub: []}
   ]},
 ]
-
-export const instructor = [
-  {title: i18n.t('nav.home'),router: 'Dashboard',icon: 'graph-up',params: {},sub: []},
-  {title: i18n.t('nav.CourseIndex'),router: 'Course',icon: '',data: {faculty: localStorage.getItem('userFaculty'), department: localStorage.getItem('userDepartment')},sub: []}
-]
