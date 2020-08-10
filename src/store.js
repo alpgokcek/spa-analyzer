@@ -178,6 +178,8 @@ export const store = new Vuex.Store({
     ],
     tableData: [],
     tableRows: [],
+    userData: [],
+    facultyData: [],
     tableActions: [
       { id: 1, text: i18n.t('list.show'), icon: 'user' },
       { id: 2, text: i18n.t('list.edit'), icon: 'edit' },
@@ -190,7 +192,7 @@ export const store = new Vuex.Store({
     cargoDay: parseFloat('4'),
     // listeler -->
     allCourses: [],
-    getCourse: []
+    getCourse: [],
     // <-- listeler
   },
   actions: {
@@ -330,9 +332,6 @@ export const store = new Vuex.Store({
     getDepartmentsHasInstructors ({ state, commit}, data) {
 
     },
-    getFaculty ({ state, commit}, data) {
-
-    },
     getGradingTool ({ state, commit}, data) {
 
     },
@@ -370,7 +369,48 @@ export const store = new Vuex.Store({
 
     },
     getUser ({ state, commit}, data) {
-
+      axios.get(`user/${data.param}`, axiosHeader)
+      .then(res => {
+        switch (res.status) {
+          case 404:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.userData = []
+            break
+          case 200:
+            state.userData = res.data
+            break
+          default:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.userData = []
+            break
+        }
+      })
+      .catch(err=> {
+        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
+        state.userData = []
+      })
+    },
+    getFaculty ({ state, commit}, data) {
+      axios.get(`faculty/${data.param}`, axiosHeader)
+      .then(res => {
+        switch (res.status) {
+          case 404:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.facultyData = []
+            break
+          case 200:
+            state.facultyData = res.data
+            break
+          default:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.facultyData = []
+            break
+        }
+      })
+      .catch(err=> {
+        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
+        state.facultyData = []
+      })
     },
     getUsersAdmin ({ state, commit}, data) {
 
@@ -384,8 +424,9 @@ export const store = new Vuex.Store({
     getCheckAuth ({ state, commit}, data) {
 
     },
+    showMerge () {
 
-    
+    },
     // <-- listeler
     // detaylar -->
     showCourse ({ state }, data) {

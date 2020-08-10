@@ -1,5 +1,6 @@
 {
   "router": {
+    "user": "Users",
     "Customer": "Customer",
     "PassiveCustomers": "Passive Customers",
     "CustomerCreate": "New Customer",

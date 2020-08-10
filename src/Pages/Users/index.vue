@@ -18,16 +18,23 @@
     <DxFilterRow :visible="true" apply-filter="auto"/>
     <DxHeaderFilter :visible="true"/>
     <DxColumnFixing :enabled="true"/>
-    <DxColumn v-for="(row, i) in tableRows" :key="i" v-if="row.visible" :data-field="row.field" :caption="$t( 'User.' + row.field)" :format="row.format" :data-type="row.dataType" :alignment="row.alignment" :cell-template="row.cellTemplate" />
-    
+    <DxColumn v-if="tableRows[0].visible" :data-field="tableRows[0].field" :caption="$t( 'User.' + tableRows[0].field)" :format="tableRows[0].format" :data-type="tableRows[0].dataType" :alignment="tableRows[0].alignment" :cell-template="tableRows[0].cellTemplate" />
+    <DxColumn v-if="tableRows[1].visible" :data-field="tableRows[1].field" :caption="$t( 'User.' + tableRows[1].field)" :format="tableRows[1].format" :data-type="tableRows[1].dataType" :alignment="tableRows[1].alignment" :cell-template="tableRows[1].cellTemplate" />
+    <DxColumn v-if="tableRows[2].visible" :data-field="tableRows[2].field" :caption="$t( 'User.' + tableRows[2].field)" :format="tableRows[2].format" :data-type="tableRows[2].dataType" :alignment="tableRows[2].alignment" :cell-template="tableRows[2].cellTemplate" />
+    <DxColumn v-if="tableRows[3].visible" :data-field="tableRows[3].field" :caption="$t( 'User.' + tableRows[3].field)" :format="tableRows[3].format" :data-type="tableRows[3].dataType" :alignment="tableRows[3].alignment" :cell-template="tableRows[3].cellTemplate" />
+    <DxColumn v-if="tableRows[4].visible" :data-field="tableRows[4].field" :caption="$t( 'User.' + tableRows[4].field)" :format="tableRows[4].format" :data-type="tableRows[4].dataType" :alignment="tableRows[4].alignment" :cell-template="tableRows[4].cellTemplate" />
+    <DxColumn v-if="tableRows[5].visible" :data-field="tableRows[5].field" :caption="$t( 'User.' + tableRows[5].field)" :format="tableRows[5].format" :data-type="tableRows[5].dataType" :alignment="tableRows[5].alignment" :cell-template="tableRows[5].cellTemplate" />
+    <DxColumn v-if="tableRows[7].visible" :data-field="tableRows[6].field" :caption="$t( 'User.' + tableRows[6].field)" :format="tableRows[6].format" :data-type="tableRows[6].dataType" :alignment="tableRows[6].alignment" :cell-template="tableRows[6].cellTemplate" />
+    <DxColumn v-if="tableRows[7].visible" :data-field="tableRows[7].field" :caption="$t( 'User.' + tableRows[7].field)" :format="tableRows[7].format" :data-type="tableRows[7].dataType" :alignment="tableRows[7].alignment" :cell-template="tableRows[7].cellTemplate" />
+    <DxColumn v-if="tableRows[8].visible" :data-field="tableRows[8].field" :caption="$t( 'User.' + tableRows[8].field)" :format="tableRows[8].format" :data-type="tableRows[8].dataType" :alignment="tableRows[8].alignment" :cell-template="tableRows[8].cellTemplate" />
+    <DxColumn v-if="tableRows[9].visible" :data-field="tableRows[9].field" :caption="$t( 'User.' + tableRows[9].field)" :format="tableRows[9].format" :data-type="tableRows[9].dataType" :alignment="tableRows[9].alignment" :cell-template="tableRows[9].cellTemplate" />
+    <DxColumn v-if="tableRows[10].visible" :data-field="tableRows[10].field" :caption="$t( 'User.' + tableRows[10].field)" :format="tableRows[10].format" :data-type="tableRows[10].dataType" :alignment="tableRows[10].alignment" :cell-template="tableRows[10].cellTemplate" />
+    <DxColumn v-if="tableRows[11].visible" :data-field="tableRows[11].field" :caption="$t( 'User.' + tableRows[11].field)" :format="tableRows[11].format" :data-type="tableRows[11].dataType" :alignment="tableRows[11].alignment" :cell-template="tableRows[11].cellTemplate" />
+    <DxColumn v-if="tableRows[12].visible" :data-field="tableRows[12].field" :caption="$t( 'User.' + tableRows[12].field)" :format="tableRows[12].format" :data-type="tableRows[12].dataType" :alignment="tableRows[12].alignment" :cell-template="tableRows[12].cellTemplate" />
     <template #customerCodeCell="cell">
       <kbd>{{cell.data.value}}</kbd>
     </template>
-    <template #tokenCell="cell">
-      <div class="asc__listPage-operations">
-        <router-link :to="{name: 'UserUpdate', params: {param: cell.data.value}}" v-b-tooltip.hover :title="$t('list.setttings')"><i class="fas fa-cog"></i></router-link>
-      </div>
-    </template>
+  
     <template #emailCell="cell">
       <kbd><a class="text-light" :href="'mailto:'+cell.data.value"><i class="far fa-envelope"></i> {{cell.data.value}}</a></kbd>
     </template>
@@ -69,7 +76,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['tableData', 'tableRows', 'tableActions'])
+    ...mapState(['tableData', 'tableRows', 'tableActions', 'tableRows'])
   },
   watch: {
     '$route' (to) {

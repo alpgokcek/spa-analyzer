@@ -44,7 +44,7 @@ export default {
     return {
       showInput: false,
       tabIndex: 1,
-      userToken: this.$route.params.param,
+      userToken: this.$route.params.token,
       status: '',
       userLevel: '',
       authc: '',
@@ -96,7 +96,7 @@ export default {
   },
   methods: {
     showUser (e) {
-      this.$store.dispatch('getFaculty', {...this.data, param: e})
+      this.$store.dispatch('showUser', {...this.data, param: e})
     },
     getAuth (e) {
       this.$store.dispatch('showAuthority', {...this.data, param: e})

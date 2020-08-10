@@ -1,40 +1,18 @@
 <template>
   <div class="asc__updatePage">
-    <b-row class="asc__updatePage-header">
-      <b-col cols="12" sm="12" md="12" class="pl-0">
-        <h3>{{$t('router.updateAuthority', {val: getUser.name})}}</h3>
-      </b-col>
-    </b-row>
-    <b-row class="asc__updatePage-body">
-      <b-col cols="12" sm="12" md="12" lg="8" xl="7" class="mb-3">
-        <b-card class="asc__updatePage-card-withTab shadow">
-          <b-tabs content-class="mt-1" v-model="tabIndex">
-            <b-tab v-for="(merg,i) in getMerge" :key="i" :title="merg.customerName" @click="getAuth(getUser.api_token+','+merg.customer)">
-              <table class="table table-hover table-striped table-sm">
-                <thead>
-                  <tr>
-                    <th>{{$t('Authorization.operation')}}</th>
-                    <th class="text-center">{{$t('Authorization.create')}}</th>
-                    <th class="text-center">{{$t('Authorization.read')}}</th>
-                    <th class="text-center">{{$t('Authorization.update')}}</th>
-                    <th class="text-center">{{$t('Authorization.delete')}}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(auth,x) in getAuthority" :key="'a'+x">
-                    <td><b>{{$t('Authorization.'+auth.work)}}</b></td>
-                    <td class="text-center"><input type="checkbox" :name="'c'+auth.id" @change="changeAuth(auth.id, auth.c, auth.r, auth.u, auth.d, auth)" v-model="auth.c" ></td>
-                    <td class="text-center"><input type="checkbox" :name="'r'+auth.id" @change="changeAuth(auth.id, auth.c, auth.r, auth.u, auth.d, auth)" v-model="auth.r" ></td>
-                    <td class="text-center"><input type="checkbox" :name="'u'+auth.id" @change="changeAuth(auth.id, auth.c, auth.r, auth.u, auth.d, auth)" v-model="auth.u" ></td>
-                    <td class="text-center"><input type="checkbox" :name="'d'+auth.id" @change="changeAuth(auth.id, auth.c, auth.r, auth.u, auth.d, auth)" v-model="auth.d" ></td>
-                  </tr>
-                </tbody>
-              </table>
-            </b-tab>
-          </b-tabs>
-        </b-card>
-      </b-col>
-    </b-row>
+    api_token: {{ userData.api_token }} <br>
+    created_at: {{ userData.created_at }} <br>
+    department_id: {{ userData.department_id }} <br>
+    email: {{ userData.email }} <br>
+    faculty_id: {{ userData.faculty_id }} <br>
+    id: {{ userData.id }} <br>
+    level: {{ userData.level }} <br>
+    name: {{ userData.name }} <br>
+    phone: {{ userData.phone }} <br>
+    photo: {{ userData.photo }} <br>
+    student_id: {{ userData.student_id }} <br>
+    university: {{ userData.university }} <br>
+    updated_at: {{ userData.updated_at }} <br>
   </div>
 </template>
 <script>
@@ -44,7 +22,7 @@ export default {
     return {
       showInput: false,
       tabIndex: 1,
-      userToken: this.$route.params.token,
+      userToken: this.$route.params.param,
       status: '',
       userLevel: '',
       authc: '',
@@ -63,7 +41,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['getUser', 'getMerge', 'allUserLevels', 'getAuthority'])
+    ...mapState(['getUser', 'getMerge', 'allUserLevels', 'getAuthority', 'userData'])
   },
   watch: {
     getUser: function (e) {
@@ -96,7 +74,7 @@ export default {
   },
   methods: {
     showUser (e) {
-      this.$store.dispatch('showUser', {...this.data, param: e})
+      this.$store.dispatch('getUser', {...this.data, param: e})
     },
     getAuth (e) {
       this.$store.dispatch('showAuthority', {...this.data, param: e})

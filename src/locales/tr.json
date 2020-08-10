@@ -1,5 +1,6 @@
 {
   "router": {
+    "user": "Kullanıcılar",
     "Customer": "Müşteri",
     "PassiveCustomers": "Pasif Müşteriler",
     "CustomerCreate": "Yeni müşteri",

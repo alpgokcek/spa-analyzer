@@ -11,19 +11,18 @@
                 <h3>{{pageTitle}}</h3>
               </b-col>
               <b-col cols="12" sm="6" md="6" class="pr-0">
-                <!-- <router-link v-if="createLink" class="btn btn-sm btn-primary float-right text-light asc__listPage-Header-Create" :to="{name: createLink}">
+                <router-link v-if="createLink" class="btn btn-sm btn-primary float-right text-light asc__listPage-Header-Create" :to="{name: createLink}">
                   <b-icon icon="plus-square"></b-icon> {{$t('list.create')}}
-                </router-link> -->
-                
-                <!-- <b-dropdown id="selectedRows" right variant="white" :text="$t('list.selectedRows')" class="asc__listPage-Header-SelectRows mx-1 float-right">
+                </router-link>
+                <b-dropdown id="selectedRows" right variant="white" :text="$t('list.selectedRows')" class="asc__listPage-Header-SelectRows mx-1 float-right">
                   <b-dropdown-item v-for="(row,i) in tableRows" :key="i" :active="row.visible" @click="hideRow(i, row.visible == true ? false : true)">
                     <b-icon :icon="row.visible == true ? 'check-box' : 'square'"></b-icon> {{$t(routeName+'.'+row.field)}}
                   </b-dropdown-item>
-                </b-dropdown> -->
+                </b-dropdown>
               </b-col>
             </b-row>
             <b-card>
-              <b-overlay :show="bigLoading" rounded="sm">
+              <b-overlay :show="false" rounded="sm">
                 <b-row>
                   <b-col>
                     <router-view/>

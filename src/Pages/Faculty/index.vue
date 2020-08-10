@@ -1,5 +1,8 @@
 <template>
   <b-table responsive striped hover :items="tableData" :fields="rows" size="sm">
+    <template v-slot:cell(token)="cell">
+      <router-link :to="{name: 'FacultyUpdate', params: {param: cell.item.token}}" v-b-tooltip.hover :title="$t('list.updateFaculty')">Update</router-link>
+    </template>
     <template v-slot:cell(id)="cell">
       <router-link :to="{name: 'Department', params: {faculty: cell.item.id}}" v-b-tooltip.hover :title="$t('list.departments')"><i class="fas fa-eye"></i></router-link>
     </template>
@@ -13,9 +16,10 @@ export default {
       routeName: this.$route.name,
       selectedRow: '',
       rows: [
+        {key: 'token', label: 'Faculty.options'},
         {key: 'universityName', label: 'Faculty.universityName'},
         {key: 'title', label: 'Faculty.title'},
-        {key: 'id', label: 'Faculty.id'},
+        {key: 'id', label: 'Faculty.id'}
       ]
     }
   },
