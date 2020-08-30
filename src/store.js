@@ -177,6 +177,8 @@ export const store = new Vuex.Store({
       { value: 2, title: 'Onaysızlar' }
     ],
     tableData: [],
+    listStatus: '',
+    listStatusText: 'Tüm Kayıtlar',
     tableRows: [],
     userData: [],
     facultyData: [],
@@ -193,6 +195,7 @@ export const store = new Vuex.Store({
     // listeler -->
     allCourses: [],
     getCourse: [],
+    showDepartment: []
     // <-- listeler
   },
   actions: {
@@ -200,7 +203,7 @@ export const store = new Vuex.Store({
     getTableData ({ state, commit }, data) {
       state.bigLoading = true
       state.tableData = []
-      return axios.get(`${data.link}`, axiosHeader)
+      return axios.get(`${data.link}${data.query}`, axiosHeader)
         .then(res => {
           state.bigLoading = false
           commit('setTableData', res.data.data)
@@ -327,7 +330,26 @@ export const store = new Vuex.Store({
 
     },
     getDepartment ({ state, commit}, data) {
-
+      axios.get(`department/${data.param}`, axiosHeader)
+      .then(res => {
+        switch (res.status) {
+          case 404:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.showDepartment = []
+            break
+          case 200:
+            state.showDepartment = res.data.data
+            break
+          default:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.showDepartment = []
+            break
+        }
+      })
+      // .catch(err=> {
+      //   this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
+      //   state.showDepartment = []
+      // })
     },
     getDepartmentsHasInstructors ({ state, commit}, data) {
 
@@ -550,6 +572,11 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
+    setStatus (state, data) {
+      console.log(data)
+      state.listStatus = data.status
+      state.listStatusText = data.text
+    },
     setLog (state, data) {
       state.returnLog = data
     },

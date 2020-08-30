@@ -14,6 +14,11 @@
                 <router-link v-if="createLink" class="btn btn-sm btn-primary float-right text-light asc__listPage-Header-Create" :to="{name: createLink}">
                   <b-icon icon="plus-square"></b-icon> {{$t('list.create')}}
                 </router-link>
+                <b-dropdown id="selectStatus" right variant="white" :text="listStatusText" class="asc__listPage-Header-SelectRows mx-1 float-right">
+                  <b-dropdown-item v-for="(row, s) in statusList" :key="'status'+s" :active="row.visible" @click="changeStatus(row.status, row.text)">
+                    {{row.text}}
+                  </b-dropdown-item>
+                </b-dropdown>
                 <b-dropdown id="selectedRows" right variant="white" :text="$t('list.selectedRows')" class="asc__listPage-Header-SelectRows mx-1 float-right">
                   <b-dropdown-item v-for="(row,i) in tableRows" :key="i" :active="row.visible" @click="hideRow(i, row.visible == true ? false : true)">
                     <b-icon :icon="row.visible == true ? 'check-box' : 'square'"></b-icon> {{$t(routeName+'.'+row.field)}}
@@ -47,11 +52,16 @@ export default {
     return {
       pageTitle: this.$route.meta.title,
       routeName: this.$route.name,
-      createLink: this.$route.meta.createLink
+      createLink: this.$route.meta.createLink,
+      statusList: [
+        { status: '', text: 'Tüm Kayıtlar' },
+        { status: 'status=1', text: 'Aktif Kayıtlar' },
+        { status: 'status=0', text: 'Pasif Kayıtlar' }
+      ]
     }
   },
   computed: {
-    ...mapState(['style', 'bigLoading', 'tableRows', 'tableFilters'])
+    ...mapState(['style', 'bigLoading', 'tableRows', 'tableFilters', 'listStatusText'])
   },
   mounted () {
     if (this.$route.fullPath === '/') {
@@ -59,6 +69,13 @@ export default {
     }
   },
   methods: {
+    changeStatus (e, s) {
+      const changed = {
+        status: e,
+        text: s
+      }
+      this.$store.commit('setStatus', changed)
+    },
     hideRow (e, w) {
       this.$store.dispatch('hideTableRow', {...this.row, id: e, what: w})
     }

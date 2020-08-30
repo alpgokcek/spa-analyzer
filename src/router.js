@@ -122,7 +122,7 @@ const routes = [
           { path: '/Authority', name: 'Authority', component: AuthorityIndex, meta: { title: i18n.t('router.Authority'), createLink: 'AuthorityCreate'} },
           { path: '/CourseOutcome', name: 'CourseOutcome', component: CourseOutcomeIndex, meta: { title: i18n.t('router.CourseOutcome'), createLink: 'CourseOutcomeCreate'} },
           { path: '/Assessment', name: 'Assessment', component: AssessmentIndex, meta: { title: i18n.t('router.Assessment'), createLink: 'AssessmentCreate'} },
-          { path: '/DepartmentsHasInstructors', name: 'DepartmentsHasInstructors', component: DepartmentsHasInstructorsIndex, meta: { title: i18n.t('router.DepartmentsHasInstructors'), createLink: 'DepartmentsHasInstructorsCreate'} },
+          { path: '/DepartmentsHasInstructors/:department', name: 'DepartmentsHasInstructors', component: DepartmentsHasInstructorsIndex, meta: { title: i18n.t('router.DepartmentsHasInstructors'), createLink: 'DepartmentsHasInstructorsCreate'} },
           { path: '/GradingTool', name: 'GradingTool', component: GradingToolIndex, meta: { title: i18n.t('router.GradingTool'), createLink: 'GradingToolCreate'} },
           { path: '/Gtcco', name: 'Gtcco', component: GtccoIndex, meta: { title: i18n.t('router.Gtcco'), createLink: 'GtccoCreate'} },
           { path: '/Igs', name: 'Igs', component: IgsIndex, meta: { title: i18n.t('router.Igs'), createLink: 'IgsCreate'} },
