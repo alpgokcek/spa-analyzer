@@ -1,9 +1,9 @@
 /* eslint-disable */
 // mutations içerde
 // actions dışarda
-// ne diysın ? 
+// ne diysın ?
 // axios actions içinde olacak, mutationsta olmaz.
-// actions + mutations kullan => {commit} 
+// actions + mutations kullan => {commit}
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
@@ -26,7 +26,7 @@ import i18n from './i18n'
 Vue.use(Vuex)
 Vue.use(ToastPlugin)
 export default axios
-axios.defaults.baseURL = apiLink || process.env.BASE_URL
+axios.defaults.baseURL =  `${apiLink || process.env.BASE_URL}`
 let axiosHeader = {
   headers: {
     'Accept': 'application/json',
@@ -54,6 +54,7 @@ export const store = new Vuex.Store({
       },
       paramName: 'uploadFile'
     },
+    allUniversities: [],
     excelUploadOptions: {
       url: 'https://cors-anywhere.herokuapp.com/https://spa-analyzer-flask.herokuapp.com/file-upload',
       thumbnailHeight: 100,
@@ -190,7 +191,11 @@ export const store = new Vuex.Store({
     cargoDay: parseFloat('4'),
     // listeler -->
     allCourses: [],
-    getCourse: []
+    getCourse: [],
+    getFaculty:[],
+    getDepartment:[],
+    allFaculties: [],
+    allDepartments: []
     // <-- listeler
   },
   actions: {
@@ -216,10 +221,8 @@ export const store = new Vuex.Store({
           this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'success'})
           commit('setReturn', data.retcount)
           commit('setLog', res.data.data)
-          
-          if (data.retcount === 0) {
-            router.push({name: data.turn})
-          }
+
+          router.push({name: data.turn})
         } else {
           this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
         }
@@ -248,16 +251,14 @@ export const store = new Vuex.Store({
       })
     },
     deleteData ({ commit }, data) {
-      axios.delete( `${data.api}${data.info}`, axiosHeader)
+      axios.delete( `${data.api}/${data.id}`, axiosHeader)
       .then(res => {
         let ret = res.data.success
         if (ret == true) {
           this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'success'})
           commit('setReturn', data.retcount)
           commit('setLog', res.data.data)
-          if (data.retcount === 0) {
-            router.push({name: data.turn})
-          }
+          this.dispatch('getTableData', { link: data.api })
         } else {
           this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
         }
@@ -325,13 +326,57 @@ export const store = new Vuex.Store({
 
     },
     getDepartment ({ state, commit}, data) {
-
+      axios.get(`department/${data.param}`, axiosHeader)
+      .then(res => {
+        switch (res.status) {
+          case 404:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.allDepartments = []
+            state.bigLoading = false
+            break
+          case 200:
+            console.log(res.data.data)
+            state.allDepartments = res.data.data
+            break
+          default:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.allDepartments = []
+            state.bigLoading = false
+            break
+        }
+      })
+      .catch(err=> {
+        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
+        state.allDepartments = []
+      })
     },
     getDepartmentsHasInstructors ({ state, commit}, data) {
 
     },
     getFaculty ({ state, commit}, data) {
-
+      axios.get(`faculty/${data.param}`, axiosHeader)
+      .then(res => {
+        switch (res.status) {
+          case 404:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.allFaculties = []
+            state.bigLoading = false
+            break
+          case 200:
+            console.log(res.data.data)
+            state.allFaculties = res.data.data
+            break
+          default:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.allFaculties = []
+            state.bigLoading = false
+            break
+        }
+      })
+      .catch(err=> {
+        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
+        state.allFaculties = []
+      })
     },
     getGradingTool ({ state, commit}, data) {
 
@@ -367,7 +412,28 @@ export const store = new Vuex.Store({
 
     },
     getUniversity ({ state, commit}, data) {
-
+      axios.get(`university${data.param}`, axiosHeader)
+      .then(res => {
+        switch (res.status) {
+          case 404:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.allUniversities = []
+            state.bigLoading = false
+            break
+          case 200:
+            state.allUniversities = res.data.data
+            break
+          default:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.allUniversities = []
+            state.bigLoading = false
+            break
+        }
+      })
+      .catch(err=> {
+        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
+        state.allUniversities = []
+      })
     },
     getUser ({ state, commit}, data) {
 
@@ -385,9 +451,34 @@ export const store = new Vuex.Store({
 
     },
 
-    
+
     // <-- listeler
     // detaylar -->
+    showDepartment ({ state }, data) {
+      axios.get(`department/${data.param}`, axiosHeader)
+      .then(res => {
+        switch (res.status) {
+          case 404:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.getDepartment = []
+            state.bigLoading = false
+            break
+          case 200:
+            console.log(res.data.data)
+            state.getDepartment = res.data.data
+            break
+          default:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.getDepartment = []
+            state.bigLoading = false
+            break
+        }
+      })
+      .catch(err=> {
+        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
+        state.allFaculties = []
+      })
+    },
     showCourse ({ state }, data) {
       axios.get(`course/${data.param}`, axiosHeader)
       .then(res => {
@@ -410,6 +501,30 @@ export const store = new Vuex.Store({
         this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
         state.bigLoading = false
         state.getCourse = []
+      })
+    },
+    showFaculty({ state }, data) {
+      axios.get(`faculty/${data.param}`, axiosHeader)
+      .then(res => {
+        state.bigLoading = false
+        switch (res.status) {
+          case 404:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.getFaculty = []
+            break
+          case 200:
+            state.getFaculty = res.data.data
+            break
+          default:
+            this.dispatch('showAlert', {...this.e, msg: res.data.message, type: 'info'})
+            state.getFaculty = []
+            break
+        }
+      })
+      .catch(err=> {
+        this.dispatch('showAlert', {...this.e, msg: err, type: 'danger'})
+        state.bigLoading = false
+        state.getFaculty = []
       })
     },
     // <-- detaylar
@@ -483,7 +598,7 @@ export const store = new Vuex.Store({
               localStorage.setItem('userFaculty', user.data.user.faculty_id)
               localStorage.setItem('userDepartment', user.data.user.department_id)
               break
-          
+
             default:
               break
           }

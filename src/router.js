@@ -34,7 +34,7 @@ import SgmgcoIndex from './pages/Sgmgco/'
 import SgmgpoIndex from './pages/Sgmgpo/'
 import StsIndex from './pages/Sts/'
 import UniversityIndex from './pages/University/'
-import UserIndex from './pages/User/'
+import UsersIndex from './pages/Users/'
 import UsersAdminIndex from './pages/UsersAdmin/'
 import UsersStudentIndex from './pages/UsersStudent/'
 import UsersInstructorIndex from './pages/UsersInstructor/'
@@ -59,7 +59,7 @@ import SgmgcoCreate from './pages/Sgmgco/create'
 import SgmgpoCreate from './pages/Sgmgpo/create'
 import StsCreate from './pages/Sts/create'
 import UniversityCreate from './pages/University/create'
-import UserCreate from './pages/User/create'
+import UsersCreate from './pages/Users/create'
 import UsersAdminCreate from './pages/UsersAdmin/create'
 import UsersStudentCreate from './pages/UsersStudent/create'
 import UsersInstructorCreate from './pages/UsersInstructor/create'
@@ -84,7 +84,7 @@ import SgmgcoUpdate from './pages/Sgmgco/update'
 import SgmgpoUpdate from './pages/Sgmgpo/update'
 import StsUpdate from './pages/Sts/update'
 import UniversityUpdate from './pages/University/update'
-import UserUpdate from './pages/User/update'
+import UsersUpdate from './pages/Users/update'
 import UsersAdminUpdate from './pages/UsersAdmin/update'
 import UsersStudentUpdate from './pages/UsersStudent/update'
 import UsersInstructorUpdate from './pages/UsersInstructor/update'
@@ -122,7 +122,7 @@ const routes = [
           { path: '/Authority', name: 'Authority', component: AuthorityIndex, meta: { title: i18n.t('router.Authority'), createLink: 'AuthorityCreate'} },
           { path: '/CourseOutcome', name: 'CourseOutcome', component: CourseOutcomeIndex, meta: { title: i18n.t('router.CourseOutcome'), createLink: 'CourseOutcomeCreate'} },
           { path: '/Assessment', name: 'Assessment', component: AssessmentIndex, meta: { title: i18n.t('router.Assessment'), createLink: 'AssessmentCreate'} },
-          { path: '/DepartmentsHasInstructors', name: 'DepartmentsHasInstructors', component: DepartmentsHasInstructorsIndex, meta: { title: i18n.t('router.DepartmentsHasInstructors'), createLink: 'DepartmentsHasInstructorsCreate'} },
+          { path: '/DepartmentsHasInstructors/:department', name: 'DepartmentsHasInstructors', component: DepartmentsHasInstructorsIndex, meta: { title: i18n.t('router.DepartmentsHasInstructors'), createLink: 'DepartmentsHasInstructorsCreate'} },
           { path: '/GradingTool', name: 'GradingTool', component: GradingToolIndex, meta: { title: i18n.t('router.GradingTool'), createLink: 'GradingToolCreate'} },
           { path: '/Gtcco', name: 'Gtcco', component: GtccoIndex, meta: { title: i18n.t('router.Gtcco'), createLink: 'GtccoCreate'} },
           { path: '/Igs', name: 'Igs', component: IgsIndex, meta: { title: i18n.t('router.Igs'), createLink: 'IgsCreate'} },
@@ -132,9 +132,9 @@ const routes = [
           { path: '/Sagt', name: 'Sagt', component: SagtIndex, meta: { title: i18n.t('router.Sagt'), createLink: 'SagtCreate'} },
           { path: '/Sgmgco', name: 'Sgmgco', component: SgmgcoIndex, meta: { title: i18n.t('router.Sgmgco'), createLink: 'SgmgcoCreate'} },
           { path: '/University', name: 'University', component: UniversityIndex, meta: { title: i18n.t('router.University'), createLink: 'UniversityCreate'} },
-          { path: '/User', name: 'User', component: UserIndex, meta: { title: i18n.t('router.User'), createLink: 'UserCreate'} },
+          { path: '/Users/:level?/:department?', name: 'Users', component: UsersIndex, meta: { title: i18n.t('router.Users'), createLink: 'UsersCreate'} },
           { path: '/UsersAdmin', name: 'UsersAdmin', component: UsersAdminIndex, meta: { title: i18n.t('router.UsersAdmin'), createLink: 'UsersAdminCreate'} },
-          { path: '/UsersStudent', name: 'UsersStudent', component: UsersStudentIndex, meta: { title: i18n.t('router.UsersStudent'), createLink: 'UsersStudentCreate'} },
+          { path: '/UsersStudent/:department', name: 'UsersStudent', component: UsersStudentIndex, meta: { title: i18n.t('router.UsersStudent'), createLink: 'UsersStudentCreate'} },
           { path: '/UsersInstructor', name: 'UsersInstructor', component: UsersInstructorIndex, meta: { title: i18n.t('router.UsersInstructor'), createLink: 'UsersInstructorCreate'} },
           { path: '/CheckAuth', name: 'CheckAuth', component: CheckAuthIndex, meta: { title: i18n.t('router.CheckAuth'), createLink: 'CheckAuthCreate'} },
         ]
@@ -152,7 +152,7 @@ const routes = [
           { path: '/Create/Assessment', name: 'AssessmentCreate', component: AssessmentCreate, meta: { title: i18n.t('router.AssessmentCreate'), baseLink: 'Assessment' } },
           { path: '/Create/Department', name: 'DepartmentCreate', component: DepartmentCreate, meta: { title: i18n.t('router.DepartmentCreate'), baseLink: 'Department' } },
           { path: '/Create/DepartmentsHasInstructors', name: 'DepartmentsHasInstructorsCreate', component: DepartmentsHasInstructorsCreate, meta: { title: i18n.t('router.DepartmentsHasInstructorsCreate'), baseLink: 'DepartmentsHasInstructors' } },
-          { path: '/Create/Faculty', name: 'FacultyCreate', component: FacultyCreate, meta: { title: i18n.t('router.FacultyCreate'), baseLink: 'Faculty' } },
+          { path: '/Create/Faculty', name: 'FacultyCreate', component: FacultyCreate, meta: { title: i18n.t('Create Faculty'), baseLink: 'Faculty' } },
           { path: '/Create/GradingTool', name: 'GradingToolCreate', component: GradingToolCreate, meta: { title: i18n.t('router.GradingToolCreate'), baseLink: 'GradingTool' } },
           { path: '/Create/Gtcco', name: 'GtccoCreate', component: GtccoCreate, meta: { title: i18n.t('router.GtccoCreate'), baseLink: 'Gtcco' } },
           { path: '/Create/Igs', name: 'IgsCreate', component: IgsCreate, meta: { title: i18n.t('router.IgsCreate'), baseLink: 'Igs' } },
@@ -165,7 +165,7 @@ const routes = [
           { path: '/Create/Sgmgpo', name: 'SgmgpoCreate', component: SgmgpoCreate, meta: { title: i18n.t('router.SgmgpoCreate'), baseLink: 'Sgmgpo' } },
           { path: '/Create/Sts', name: 'StsCreate', component: StsCreate, meta: { title: i18n.t('router.StsCreate'), baseLink: 'Sts' } },
           { path: '/Create/University', name: 'UniversityCreate', component: UniversityCreate, meta: { title: i18n.t('router.UniversityCreate'), baseLink: 'University' } },
-          { path: '/Create/User', name: 'UserCreate', component: UserCreate, meta: { title: i18n.t('router.UserCreate'), baseLink: 'User' } },
+          { path: '/Create/Users', name: 'UsersCreate', component: UsersCreate, meta: { title: i18n.t('router.UsersCreate'), baseLink: 'Users' } },
           { path: '/Create/UsersAdmin', name: 'UsersAdminCreate', component: UsersAdminCreate, meta: { title: i18n.t('router.UsersAdminCreate'), baseLink: 'UsersAdmin' } },
           { path: '/Create/UsersStudent', name: 'UsersStudentCreate', component: UsersStudentCreate, meta: { title: i18n.t('router.UsersStudentCreate'), baseLink: 'UsersStudent' } },
           { path: '/Create/UsersInstructor', name: 'UsersInstructorCreate', component: UsersInstructorCreate, meta: { title: i18n.t('router.UsersInstructorCreate'), baseLink: 'UsersInstructor' } },
@@ -195,7 +195,7 @@ const routes = [
           { path: 'Update/Sgmgpo/:param', name: 'SgmgpoUpdate', component: SgmgpoUpdate, meta: { title: i18n.t('router.SgmgpoUpdate') } },
           { path: 'Update/Sts/:param', name: 'StsUpdate', component: StsUpdate, meta: { title: i18n.t('router.StsUpdate') } },
           { path: 'Update/University/:param', name: 'UniversityUpdate', component: UniversityUpdate, meta: { title: i18n.t('router.UniversityUpdate') } },
-          { path: 'Update/User/:param', name: 'UserUpdate', component: UserUpdate, meta: { title: i18n.t('router.UserUpdate') } },
+          { path: 'Update/Users/:param', name: 'UsersUpdate', component: UsersUpdate, meta: { title: i18n.t('router.UsersUpdate') } },
           { path: 'Update/UsersAdmin/:param', name: 'UsersAdminUpdate', component: UsersAdminUpdate, meta: { title: i18n.t('router.UsersAdminUpdate') } },
           { path: 'Update/UsersStudent/:param', name: 'UsersStudentUpdate', component: UsersStudentUpdate, meta: { title: i18n.t('router.UsersStudentUpdate') } },
           { path: 'Update/UsersInstructor/:param', name: 'UsersInstructorUpdate', component: UsersInstructorUpdate, meta: { title: i18n.t('router.UsersInstructorUpdate') } },

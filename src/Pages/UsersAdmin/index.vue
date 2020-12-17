@@ -29,7 +29,7 @@
       <div class="asc__listPage-operations">
         <!-- <span v-b-tooltip.hover title="Kullanıcı - Firma Eşleştirme"><i class="fas fa-money-bill-wave"></i></span>
         <span v-b-tooltip.hover title="Kullanıcı Yetkileri"><i class="fas fa-money-bill-wave"></i></span> -->
-        <router-link :to="{name: 'UserUpdate', params: {token: cell.data.value}}" v-b-tooltip.hover :title="$t('list.setttings')"><i class="fas fa-cog"></i></router-link>
+        <router-link :to="{name: 'UsersUpdate', params: {token: cell.data.value}}" v-b-tooltip.hover :title="$t('list.setttings')"><i class="fas fa-cog"></i></router-link>
       </div>
     </template>
     <template #emailCell="cell">

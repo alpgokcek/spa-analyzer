@@ -1,7 +1,7 @@
 import i18n from '../i18n'
 export const admin = [
-  {title: i18n.t('nav.home'), router: 'Dashboard', icon: 'graph-up', params: {}, sub: []},
-  {title: i18n.t('nav.FacultyIndex'), router: 'Faculty', icon: '', params: {}, sub: []},
+  {title: i18n.t('Home'), router: 'Dashboard', icon: 'graph-up', params: {}, sub: []},
+  {title: i18n.t('Faculties'), router: 'Faculty', icon: '', params: {}, sub: []},
   {title: i18n.t('nav.Other'), router: 'Authority', icon: '', params: {}, sub: [
     {title: i18n.t('nav.AuthorityIndex'), router: 'Authority', icon: '', params: {}, sub: []},
     {title: i18n.t ('nav.CourseIndex'), router: 'Course',icon: '',params: {},sub: []},
@@ -21,7 +21,7 @@ export const admin = [
     {title: i18n.t('nav.SgmgpoIndex'), router: 'Sgmgpo', icon: '', params: {}, sub: []},
     {title: i18n.t('nav.StsIndex'), router: 'Sts', icon: '', params: {}, sub: []},
     {title: i18n.t('nav.UniversityIndex'), router: 'University', icon: '', params: {}, sub: []},
-    {title: i18n.t('nav.UserIndex'), router: 'User', icon: '', params: {}, sub: []},
+    {title: i18n.t('nav.UsersIndex'), router: 'Users', icon: '', params: {}, sub: []},
     {title: i18n.t('nav.UsersAdminIndex'), router: 'UsersAdmin', icon: '', params: {}, sub: []},
     {title: i18n.t('nav.UsersStudentIndex'), router: 'UsersStudent', icon: '', params: {}, sub: []},
     {title: i18n.t('nav.UsersInstructorIndex'), router: 'UsersInstructor', icon: '', params: {}, sub: []},

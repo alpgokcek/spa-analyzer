@@ -16,11 +16,10 @@ export default {
       routeName: this.$route.name,
       rows: [
         { key: 'id', label:'ID'},
-        { key: 'departmentName', label:'Department Name'},
-        { key: 'instructorName', label:'Instructor Name'},
-        { key: 'instructor_email', label:'Instructor Email'},
+        { key: 'name', label:'Name'},
+        { key: 'student_id', label:'Student ID'},
+        { key: 'level', label:'Level'},
         { key: 'sections', label: 'Sections'},
-        { key: 'sections', label: 'Actions'},
       ]
     }
   },
@@ -28,7 +27,15 @@ export default {
     ...mapState(['tableData', 'tableRows', 'tableActions', 'tableRows'])
   },
   mounted () {
-    this.getData('departments-has-instructors?department=' + this.$route.params.department)
+    let url = "user";
+    let flag = false;
+    if (!!this.$route.params.level) {
+      url += `?level=${this.$route.params.level}`
+      flag = true;
+    } if(!!this.$route.params.department) {
+      url += `${flag ? '&' : '?' }department=${this.$route.params.department}`
+    }
+    this.getData(url)
     this.setRows()
   },
   methods: {
@@ -37,10 +44,7 @@ export default {
     },
     getData (e) {
       this.$store.dispatch('getTableData', { ...this.data, link: e })
-    },
-    deleteDepartmentHasInstructors (item) {
-      this.$store.dispatch('deleteData', {...this.data, api: 'departments-has-instructors', id: item.id, turn: 'departments-has-instructors', retcount: 0})
-    },
+    }
   }
 }
 </script>
