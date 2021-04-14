@@ -1,0 +1,16 @@
+.user-edit {
+  &__radio {
+    display: flex;
+    align-items: center;
+  }
+  &__checkbox {
+    display: flex;
+    align-items: center;
+  }
+  &-invalid-field {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #f05050;
+  }
+}

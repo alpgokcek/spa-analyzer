@@ -1,0 +1,17 @@
+.students-answer-gt-table {
+  &--th-center {
+    text-align: center;
+  }
+  &--td-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__edit-button {
+    cursor: pointer;
+  }
+  &__actions {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

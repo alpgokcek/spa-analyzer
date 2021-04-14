@@ -1,0 +1,57 @@
+.card-page-title {
+  font-weight: 700;
+}
+.card-header-title {
+  display: flex;
+  font-size: 1.3rem;
+  line-height: 4rem;
+  background-color: #fcfcfc;
+  height: 4rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin phone {
+  @media (max-width: 500px) {
+    @content;
+  }
+}
+
+.hide-column-on-mobile {
+  @include phone {
+    display: none;
+  }
+}
+th .order:before {
+  margin-left: 3.5px;
+  content: "\2191";
+  opacity: 0.4;
+}
+
+th .order:after {
+  content: "\2193";
+  opacity: 0.4;
+}
+
+th .caret-asc:before {
+  margin-left: 3.5px;
+  content: "\2191";
+}
+
+th .caret-asc:after {
+  content: "\2193";
+  opacity: 0.4;
+}
+
+th .caret-desc:before {
+  margin-left: 3.5px;
+  content: "\2191";
+  opacity: 0.4;
+}
+
+th .caret-desc:after {
+  content: "\2193";
+}

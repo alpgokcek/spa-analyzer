@@ -1,0 +1,13 @@
+.login {
+  &-forgot-password {
+    display: flex;
+    justify-content: center;
+  }
+  &-invalid-field {
+    width: 100%;
+    margin-top: 0.75rem;
+    font-size: 90%;
+    color: #f05050;
+    padding: 0.5rem;
+  }
+}

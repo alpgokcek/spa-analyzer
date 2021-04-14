@@ -1,0 +1,20 @@
+.bs-table {
+  &__paginator {
+    margin: 2rem -2rem 0 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  &__header-border {
+    border-bottom: 2px solid #eee;
+  }
+  &__search {
+    width: 100%;
+    max-width: 300px;
+    float: right;
+    margin-bottom: 30px;
+    &-button {
+      cursor: pointer;
+    }
+  }
+}

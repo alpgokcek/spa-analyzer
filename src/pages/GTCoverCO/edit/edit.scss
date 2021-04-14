@@ -1,0 +1,20 @@
+.gt-cover-co-edit {
+  &__radio {
+    display: flex;
+    align-items: center;
+  }
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 30px;
+    margin-bottom: 40px;
+    font-weight: 400;
+    word-wrap: break-word;
+    &-title {
+      margin-right: 20px;
+    }
+  }
+  &__form {
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,11 @@
+.popover-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+  padding: 1rem;
+  &-status-change {
+    margin-top: 20px;
+  }
+}
