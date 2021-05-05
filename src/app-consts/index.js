@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const API_URL = 'http://spa-analyzer-api.herokuapp.com/api/'
-export const STORAGE_URL = 'http://spa-analyzer-api.herokuapp.com/storage'
+export const API_URL = 'https://spa-analyzer-api.herokuapp.com/api/'
+export const STORAGE_URL = 'https://spa-analyzer-api.herokuapp.com/storage'
 
 export const BASE_PATH = "/"
 
@@ -22,12 +22,12 @@ export const FILE_TYPES = {
 export const FILE_UPLOAD = {
     SPA_FILE: 'https://spa-analyzer-flask.herokuapp.com/file-upload',
     SPA_FILE_DELETE: 'https://spa-analyzer-flask.herokuapp.com/file-remove',
-    STS_FILE:'/api/sts/uploadedFile',
-    SECTIONS_FILE:'/api/section/uploadedFile',
-    IGS_FILE: '/api/igs/uploadedFile',
-    COURSE_FILE: '/api/course/uploadedFile',
-    PO_FILE: '/api/program-outcome/uploadedFile',
-    USER_FILE: '/api/user/uploadedFile'
+    STS_FILE:'/sts/uploadedFile',
+    SECTIONS_FILE:'/section/uploadedFile',
+    IGS_FILE: '/igs/uploadedFile',
+    COURSE_FILE: '/course/uploadedFile',
+    PO_FILE: '/program-outcome/uploadedFile',
+    USER_FILE: '/user/uploadedFile'
 }
 
 export const LEVEL_TO_ROLE = {

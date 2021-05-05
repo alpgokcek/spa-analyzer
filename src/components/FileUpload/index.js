@@ -19,7 +19,6 @@ import { connect } from 'react-redux';
 import { getSection, uploadFile, uploadSPAFile, deleteSPAFile } from 'Actions';
 import PopoverModal from 'Components/PopoverModal';
 import { isUpdated } from 'Utils';
-import { file } from 'jszip';
 
 const FileUpload = (props) => {
     const {match, history, fileType, section} = props;
@@ -34,6 +33,7 @@ const FileUpload = (props) => {
         credit:'',
         file: ''
     }
+    console.log(isSPAUpload)
     const [form, setForm] = useState(isSPAUpload ? {...spaDefaultForm} : {fileUrl: ''})
     const [formExternal, setFormExternal] = useState({student_department_id: '', course_section_id: ''})
 
@@ -235,7 +235,7 @@ const FileUpload = (props) => {
                                         <FormGroup row>
                                             <label className="col-md-2 col-form-label">{UPLOAD_FILE_PAGE.edit.formFields.file}</label>
                                             <div className="col-md-10">
-                                                <Input type="file" 
+                                                <input type="file" 
                                                     name="file"
                                                     onChange={e=>{
                                                         console.log(e.target.files[0])
@@ -256,8 +256,10 @@ const FileUpload = (props) => {
                                             <div className="col-md-10">
                                                 <Input type="file" 
                                                     name="fileUrl"
-                                                    onChange={e=>setForm({...form, fileUrl:e.target.files[0]})}
-                                                    value={form.fileUrl}
+                                                    onChange={e=>{
+                                                        console.log(e.target.files[0])
+                                                        setForm({...form, fileUrl: e.target.files[0]})
+                                                    }}
                                                 />
                                             </div>
                                         </FormGroup>
