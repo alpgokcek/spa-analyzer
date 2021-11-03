@@ -88,7 +88,7 @@
     "screenfull": "3.3.3",
     "simple-line-icons": "2.4.1",
     "url-loader": "^4.1.1",
-    "validator": "10.9.0",
+    "validator": "13.7.0",
     "webpack": "^4.44.2",
     "webpack-manifest-plugin": "^3.0.0",
     "webpack-node-externals": "^2.5.2",
